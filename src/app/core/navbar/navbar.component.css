@@ -1,0 +1,66 @@
+.navbar {
+    color: #fff;
+    padding-left: 40px;
+    padding-top: 15px;
+}
+
+.navbar-icon {
+    color: #fff;
+}
+
+.navbar-menu {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    background-color: #696969;
+    width: 300px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+
+    z-index: 99999;
+    list-style: none;
+    color: #fff;
+    -webkit-box-shadow: 4px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 4px 0px 5px 0px rgba(0,0,0,0.75);
+
+    transition: visibility 0.5s, opacity 0.5s;
+}
+
+.navbar-menu > li > a  {
+    display: block;
+    padding: 15px 40px;
+}
+
+.navbar-submenu > li > a  {
+    display: block;
+    padding: 15px 60px;
+}
+
+.navbar-item-menu:hover {
+    background-color: #888;
+}
+
+.navbar-item-menu-logo {
+    border-bottom: 1px solid #999;
+}
+
+.navbar-submenu {
+    overflow: hidden;
+    max-height: 0;
+    -webkit-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    background-color: #AAA;
+}
+
+.navbar-menu li:hover .navbar-submenu {
+    display: block;
+    max-height: 200px;
+}

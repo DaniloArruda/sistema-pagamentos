@@ -1,0 +1,25 @@
+<ul class="navbar-menu" [style.visibility]="exibindoMenu ? 'visible' : 'hidden'"
+  [style.opacity]="exibindoMenu ? '1' : '0'">
+  <li class="navbar-item-menu navbar-item-menu-logo" (click)="exibindoMenu = !exibindoMenu">
+    <a href="javascript:;" class="navbar-icon">
+      <i class="fa fa-bars"></i>
+      Logo
+    </a>
+  </li>
+  <li class="navbar-item-menu" routerLink="/cliente/cadastro"><a><i class="fa fa-users"></i>  Clientes</a></li>
+  <li class="navbar-item-menu"><a><i class="fa fa-address-card"></i>  Planos</a></li>
+  <li class="navbar-item-menu"><a><i class="fa fa-money-bill-wave"></i>  Pagamentos</a>
+    <ul class="navbar-submenu">
+      <li class="navbar-item-menu" routerLink="/pagamento"><a ><i class="fa fa-users"></i>  Registrar</a></li>
+      <li class="navbar-item-menu" routerLink="/historico"><a ><i class="fa fa-address-card"></i>  Histórico</a></li>
+    </ul>
+  </li>
+</ul>
+<nav class="navbar navbar-dark bg-primary">
+  <div class="container">
+    <a href="javascript:;" class="navbar-icon" (click)="exibindoMenu = !exibindoMenu">
+      <i class="fa fa-bars"></i>
+      Logo
+    </a>
+  </div>
+</nav>
