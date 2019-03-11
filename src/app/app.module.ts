@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { PagamentoModule } from './pagamento/pagamento.module';
 import { ClienteModule } from './cliente/cliente.module';
+import { PlanoModule } from './plano/plano.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ClienteModule } from './cliente/cliente.module';
     CoreModule,
     PagamentoModule,
     ClienteModule,
+    PlanoModule,
     AppRoutingModule
   ],
   providers: [],

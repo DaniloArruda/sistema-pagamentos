@@ -1,0 +1,38 @@
+<div class="container">
+  <h1>Planos</h1>
+
+  <div class="row">
+    <div class="col-12">
+      <p-table [value]="planos" [responsive]="true" 
+        [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header">
+          <tr style="text-align:center;">
+            <th>Nome</th>
+            <th>Valor</th>
+            <th>Quantidade de dados</th>
+            <th style="width: 100px;"></th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-plano>
+          <tr>
+            <td>{{ plano.nome }}</td>
+            <td style="text-align: right">R${{ plano.valor | number:'1.2-2' }}</td>
+            <td style="text-align: center">{{ plano.qtdDados }} MB</td>
+            <td>
+              <a pButton href="javascript:;" icon="pi pi-pencil" style="margin-right: 5px;"></a>
+              <button pButton icon="pi pi-trash"></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-12">
+      <a pButton href="javascript:;" label="Novo plano" style="margin-top: 20px"></a>
+    </div>
+  </div>
+</div>
