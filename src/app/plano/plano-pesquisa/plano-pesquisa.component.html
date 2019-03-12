@@ -3,7 +3,7 @@
 
   <div class="row">
     <div class="col-12">
-      <p-table [value]="planos" [responsive]="true" 
+      <p-table [value]="planos" [responsive]="true"
         [paginator]="true" [rows]="10">
         <ng-template pTemplate="header">
           <tr style="text-align:center;">
@@ -32,7 +32,8 @@
 
   <div class="row">
     <div class="col-12">
-      <a pButton href="javascript:;" label="Novo plano" style="margin-top: 20px"></a>
+      <a pButton href="javascript:;" label="Novo plano" routerLink="/plano/cadastro"
+        style="margin-top: 20px"></a>
     </div>
   </div>
 </div>

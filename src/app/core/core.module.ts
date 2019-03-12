@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { PagamentoService } from '../pagamento/pagamento.service';
-import { RouterModule } from '@angular/router';
+import { PlanoService } from '../plano/plano.service';
 
 @NgModule({
   declarations: [NavbarComponent],
@@ -15,7 +16,8 @@ import { RouterModule } from '@angular/router';
     NavbarComponent
   ],
   providers: [
-    PagamentoService
+    PagamentoService,
+    PlanoService
   ]
 })
 export class CoreModule { }

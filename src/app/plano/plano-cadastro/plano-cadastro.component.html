@@ -1,0 +1,35 @@
+<div class="container">
+
+  {{ plano | json }}
+  <h1>Cadastro de Plano</h1>
+
+  <form #form="ngForm" (ngSubmit)="submit(form)">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label>Nome</label>
+        <input type="text" class="form-control" name="nome" [(ngModel)]="plano.nome" />
+      </div>
+
+      <div class="form-group col-md-4">
+        <label>Valor</label>
+        <input type="text" class="form-control" name="valor" [(ngModel)]="plano.valor"
+          currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative: false }"/>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label>Quantidade de dados</label>
+        <input type="number" class="form-control" name="qtdDados" [(ngModel)]="plano.qtdDados" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-sm-6">
+        <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+      </div>
+
+      <div class="form-group col-sm-6">
+        <a routerLink="/plano" class="link-pesquisa">Voltar para a pesquisa</a>
+      </div>
+    </div>
+  </form>
+</div>
