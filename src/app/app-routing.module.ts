@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'cliente/detalhe', component: ClienteDetalheComponent },
   { path: 'plano', component: PlanoPesquisaComponent },
   { path: 'plano/cadastro', component: PlanoCadastroComponent },
+  { path: 'plano/:id', component: PlanoCadastroComponent },
 ];
 
 @NgModule({

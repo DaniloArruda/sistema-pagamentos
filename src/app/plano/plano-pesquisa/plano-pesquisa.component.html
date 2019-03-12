@@ -17,11 +17,12 @@
         <ng-template pTemplate="body" let-plano>
           <tr>
             <td>{{ plano.nome }}</td>
-            <td style="text-align: right">R${{ plano.valor | number:'1.2-2' }}</td>
+            <td style="text-align: right">R$ {{ plano.valor | number:'1.2-2' }}</td>
             <td style="text-align: center">{{ plano.qtdDados }} MB</td>
             <td>
-              <a pButton href="javascript:;" icon="pi pi-pencil" style="margin-right: 5px;"></a>
-              <button pButton icon="pi pi-trash"></button>
+              <a pButton href="javascript:;" icon="pi pi-pencil" style="margin-right: 5px;"
+                [routerLink]="['/plano', plano._id]"></a>
+              <button pButton icon="pi pi-trash" (click)="confirmarExclusao(plano)"></button>
             </td>
           </tr>
         </ng-template>

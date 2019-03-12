@@ -18,15 +18,27 @@ export class PlanoService {
       .then(response => response as Plano[]);
   }
 
+  buscarPorId(id: string) {
+    return this.http.get(`${this.planoUrl}/${id}`)
+      .toPromise()
+      .then(response => response as Plano);
+  }
+
   salvar(plano: Plano) {
-    console.log('entrou no serviço');
     return this.http.post(this.planoUrl, plano)
       .toPromise()
-      .then(response => {
-        const planoSalvo = response as Plano;
-        console.log(planoSalvo);
+      .then(planoSalvo => planoSalvo as Plano);
+  }
 
-        return planoSalvo;
-      });
+  atualizar(plano: Plano) {
+    return this.http.put(`${this.planoUrl}/${plano._id}`, plano)
+      .toPromise()
+      .then(planoSalvo => planoSalvo as Plano);
+  }
+
+  excluir(id: string) {
+    return this.http.delete(`${this.planoUrl}/${id}`)
+      .toPromise()
+      .then(() => null);
   }
 }
