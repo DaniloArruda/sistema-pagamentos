@@ -1,8 +1,9 @@
 <div class="container">
   <h1>Cadastro de clientes</h1>
 
-  <form>
+  <form #form="ngForm" (ngSubmit)="submit(form)">
     <app-cliente-formulario [cliente]="cliente"></app-cliente-formulario>
-    <button type="button" class="btn btn-primary btn-block">Salvar</button>
+    <button type="submit" class="btn btn-primary btn-block"
+      style="margin-bottom:20px">Salvar</button>
   </form>
 </div>

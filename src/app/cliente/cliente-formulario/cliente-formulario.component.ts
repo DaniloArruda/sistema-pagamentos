@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { PlanoService } from 'src/app/plano/plano.service';
+import { Cliente } from 'src/app/core/model/cliente';
+
 @Component({
   selector: 'app-cliente-formulario',
   templateUrl: './cliente-formulario.component.html',
@@ -11,11 +14,20 @@ export class ClienteFormularioComponent implements OnInit {
   somenteLeitura = false;
 
   @Input()
-  cliente = {};
+  cliente: Cliente;
 
-  constructor() { }
+  planos = [];
+
+  constructor(
+    private planoService: PlanoService
+  ) { }
 
   ngOnInit() {
+    this.consultarPlanos();
   }
 
+  consultarPlanos() {
+    this.planoService.listarTodos()
+      .then(planos => this.planos = planos);
+  }
 }

@@ -25,3 +25,7 @@ form {
 form button {
     margin-top: 30px;
 }
+
+legend {
+  width: unset !important;
+}

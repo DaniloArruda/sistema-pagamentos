@@ -7,10 +7,12 @@ import { ClienteCadastroComponent } from './cliente/cliente-cadastro/cliente-cad
 import { ClienteDetalheComponent } from './cliente/cliente-detalhe/cliente-detalhe.component';
 import { PlanoPesquisaComponent } from './plano/plano-pesquisa/plano-pesquisa.component';
 import { PlanoCadastroComponent } from './plano/plano-cadastro/plano-cadastro.component';
+import { ClientePesquisaComponent } from './cliente/cliente-pesquisa/cliente-pesquisa.component';
 
 const routes: Routes = [
   { path: 'pagamento', component: PagamentoRegistroComponent },
   { path: 'historico', component: PagamentoHistoricoComponent },
+  { path: 'cliente', component: ClientePesquisaComponent },
   { path: 'cliente/cadastro', component: ClienteCadastroComponent },
   { path: 'cliente/detalhe', component: ClienteDetalheComponent },
   { path: 'plano', component: PlanoPesquisaComponent },

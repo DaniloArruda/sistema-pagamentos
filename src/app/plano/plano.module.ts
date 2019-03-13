@@ -5,10 +5,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { PlanoPesquisaComponent } from './plano-pesquisa/plano-pesquisa.component';
+import { PlanoCadastroComponent } from './plano-cadastro/plano-cadastro.component';
 
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
-import { PlanoCadastroComponent } from './plano-cadastro/plano-cadastro.component';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 @NgModule({

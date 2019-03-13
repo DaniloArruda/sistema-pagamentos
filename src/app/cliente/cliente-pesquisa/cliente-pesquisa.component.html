@@ -1,0 +1,55 @@
+<div class="container">
+  <h1>Clientes</h1>
+
+  <form #form="ngForm">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label>Nome</label>
+        <input type="text" class="form-control" [readonly]="somenteLeitura"
+          />
+      </div>
+
+      <div class="form-group col-md-4">
+        <label>E-mail</label>
+        <input type="text" class="form-control" [readonly]="somenteLeitura"
+           />
+      </div>
+
+      <div class="form-group col-md-4">
+        <label>Telefone</label>
+        <input type="text" class="form-control" [readonly]="somenteLeitura"
+           />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <p-table [value]="clientes" [responsive]="true"
+        [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header">
+          <tr style="text-align: center">
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Telefone</th>
+            <th>Plano</th>
+            <th style="width:100px"></th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-cliente>
+          <tr>
+            <td>{{ cliente.nome }}</td>
+            <td>{{ cliente.email }}</td>
+            <td>{{ cliente.telefone }}</td>
+            <td></td>
+            <td>
+              <a pButton icon="pi pi-pencil" [routerLink]="['/cliente', cliente._id]"
+                style="margin-right: 5px"></a>
+              <button pButton icon="pi pi-trash"></button>
+            </td>
+          </tr>
+        </ng-template>
+
+      </p-table>
+    </div>
+  </form>
+</div>
