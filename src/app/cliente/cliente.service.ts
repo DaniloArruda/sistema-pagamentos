@@ -1,4 +1,5 @@
 import { Cliente } from 'src/app/core/model/cliente';
+import { PlanoService } from '../plano/plano.service';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -11,13 +12,31 @@ export class ClienteService {
   clienteUrl = 'http://localhost:3001/pagamento-api/cliente';
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private planoService: PlanoService
   ) { }
 
   pesquisar() {
     return this.http.get(this.clienteUrl)
       .toPromise()
-      .then(response => response as Cliente[]);
+      .then(response => {
+        const clientes = response as any;
+
+        for (const cliente of clientes) {
+          this.planoService.buscarPorId(cliente.plano)
+            .then(plano => {
+              cliente.planoObj = plano;
+            });
+        }
+
+        return clientes;
+      });
+  }
+
+  buscarPorId(id: string) {
+    return this.http.get(`${this.clienteUrl}/${id}`)
+      .toPromise()
+      .then(response => response as Cliente);
   }
 
   salvar(cliente: Cliente) {

@@ -23,14 +23,20 @@
     </div>
 
     <div class="form-row">
+      <div class="form-group col-12">
+        <button type="button" class="btn btn-primary" style="margin-top:5px">Pesquisar</button>
+      </div>
+    </div>
+
+    <div class="form-row">
       <p-table [value]="clientes" [responsive]="true"
         [paginator]="true" [rows]="10">
         <ng-template pTemplate="header">
           <tr style="text-align: center">
             <th>Nome</th>
             <th>E-mail</th>
-            <th>Telefone</th>
-            <th>Plano</th>
+            <th style="width:120px">Telefone</th>
+            <th style="width:160px">Plano</th>
             <th style="width:100px"></th>
           </tr>
         </ng-template>
@@ -39,8 +45,8 @@
           <tr>
             <td>{{ cliente.nome }}</td>
             <td>{{ cliente.email }}</td>
-            <td>{{ cliente.telefone }}</td>
-            <td></td>
+            <td style="text-align: center">{{ cliente.telefone }}</td>
+            <td style="text-align: center">{{ cliente.planoObj?.nome }}</td>
             <td>
               <a pButton icon="pi pi-pencil" [routerLink]="['/cliente', cliente._id]"
                 style="margin-right: 5px"></a>
@@ -50,6 +56,12 @@
         </ng-template>
 
       </p-table>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-12">
+        <button type="button" class="btn btn-primary" routerLink="/cliente/cadastro">Novo cliente</button>
+      </div>
     </div>
   </form>
 </div>

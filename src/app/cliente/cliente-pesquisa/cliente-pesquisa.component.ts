@@ -22,7 +22,10 @@ export class ClientePesquisaComponent implements OnInit {
 
   consultarClientes() {
     this.clienteService.pesquisar()
-      .then(clientes => this.clientes = clientes);
+      .then(clientes => {
+        console.log(clientes);
+        this.clientes = clientes;
+      });
   }
 
   plano(id: string) {

@@ -1,3 +1,5 @@
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -18,10 +20,26 @@ export class ClienteCadastroComponent implements OnInit {
 
   constructor(
     private clienteService: ClienteService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private activatedRoute: ActivatedRoute,
+    private title: Title
   ) { }
 
   ngOnInit() {
+    this.title.setTitle('Novo cliente');
+    this.verificarEdicao();
+  }
+
+  verificarEdicao() {
+    const id = this.activatedRoute.snapshot.params.id;
+    if (id) {
+      this.clienteService.buscarPorId(id)
+        .then(cliente => {
+          this.cliente = cliente;
+          this.editando = true;
+          this.title.setTitle(`Edição de cliente: ${cliente.nome}`);
+        });
+    }
   }
 
   submit(form: FormControl) {

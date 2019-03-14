@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'historico', component: PagamentoHistoricoComponent },
   { path: 'cliente', component: ClientePesquisaComponent },
   { path: 'cliente/cadastro', component: ClienteCadastroComponent },
+  { path: 'cliente/:id', component: ClienteCadastroComponent },
   { path: 'cliente/detalhe', component: ClienteDetalheComponent },
   { path: 'plano', component: PlanoPesquisaComponent },
   { path: 'plano/cadastro', component: PlanoCadastroComponent },
