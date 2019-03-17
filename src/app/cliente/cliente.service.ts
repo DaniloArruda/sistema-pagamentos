@@ -1,7 +1,7 @@
 import { Cliente } from 'src/app/core/model/cliente';
 import { PlanoService } from '../plano/plano.service';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -16,8 +16,24 @@ export class ClienteService {
     private planoService: PlanoService
   ) { }
 
-  pesquisar() {
-    return this.http.get(this.clienteUrl)
+  pesquisar(filtro: ClienteFiltro) {
+    let params = new HttpParams();
+
+    console.log(filtro);
+
+    if (filtro.nome) {
+      params = params.set('nome', filtro.nome);
+    }
+
+    if (filtro.email) {
+      params = params.set('email', filtro.email);
+    }
+
+    if (filtro.telefone) {
+      params = params.set('telefone', filtro.telefone);
+    }
+
+    return this.http.get(this.clienteUrl, { params })
       .toPromise()
       .then(response => {
         const clientes = response as any;
@@ -56,4 +72,10 @@ export class ClienteService {
       .toPromise()
       .then(() => null);
   }
+}
+
+export class ClienteFiltro {
+  nome: string;
+  email: string;
+  telefone: string;
 }

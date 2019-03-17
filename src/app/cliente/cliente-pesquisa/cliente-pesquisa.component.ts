@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { PlanoService } from 'src/app/plano/plano.service';
-import { ClienteService } from '../cliente.service';
+import { ClienteService, ClienteFiltro } from '../cliente.service';
 
 import { ConfirmationService, MessageService } from 'primeng/api';
 
@@ -13,6 +13,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 export class ClientePesquisaComponent implements OnInit {
 
   clientes = [];
+  clienteFiltro = new ClienteFiltro();
 
   constructor(
     private clienteService: ClienteService,
@@ -26,7 +27,7 @@ export class ClientePesquisaComponent implements OnInit {
   }
 
   consultarClientes() {
-    this.clienteService.pesquisar()
+    this.clienteService.pesquisar(this.clienteFiltro)
       .then(clientes => this.clientes = clientes);
   }
 
