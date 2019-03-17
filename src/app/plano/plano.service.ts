@@ -8,7 +8,7 @@ import { Plano } from '../core/model/plano';
 })
 export class PlanoService {
 
-  planoUrl = 'http://localhost:3001/pagamento-api/plano';
+  planoUrl = 'https://da-pagamento-api.herokuapp.com/plano';
 
   constructor(private http: HttpClient) { }
 

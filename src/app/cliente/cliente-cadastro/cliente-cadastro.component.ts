@@ -45,6 +45,8 @@ export class ClienteCadastroComponent implements OnInit {
   submit(form: FormControl) {
     if (!this.editando) {
       this.salvar(form);
+    } else {
+      this.atualizar(form);
     }
   }
 
@@ -61,4 +63,16 @@ export class ClienteCadastroComponent implements OnInit {
       });
   }
 
+  atualizar(form: FormControl) {
+    this.clienteService.atualizar(this.cliente)
+      .then(() => {
+        this.messageService.add({ severity: 'success', summary: 'Cliente atualizado com sucesso' });
+
+        this.cliente = new Cliente();
+        form.reset();
+      })
+      .catch(erro => {
+        this.messageService.add({ severity: 'error', summary: 'Ocorreu um erro ao processar a requisição' });
+      });
+  }
 }

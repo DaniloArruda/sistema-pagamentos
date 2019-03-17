@@ -7,5 +7,5 @@ export class Cliente {
   email: string;
   telefone: string;
   endereco = new Endereco();
-  plano: string;
+  plano = '';
 }

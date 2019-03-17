@@ -1,6 +1,9 @@
-import { PlanoService } from 'src/app/plano/plano.service';
 import { Component, OnInit } from '@angular/core';
+
+import { PlanoService } from 'src/app/plano/plano.service';
 import { ClienteService } from '../cliente.service';
+
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-cliente-pesquisa',
@@ -13,7 +16,9 @@ export class ClientePesquisaComponent implements OnInit {
 
   constructor(
     private clienteService: ClienteService,
-    private planoService: PlanoService
+    private planoService: PlanoService,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
@@ -22,15 +27,31 @@ export class ClientePesquisaComponent implements OnInit {
 
   consultarClientes() {
     this.clienteService.pesquisar()
-      .then(clientes => {
-        console.log(clientes);
-        this.clientes = clientes;
-      });
+      .then(clientes => this.clientes = clientes);
   }
 
   plano(id: string) {
     this.planoService.buscarPorId(id)
       .then(plano => plano._id);
+  }
+
+  confirmarExclusao(cliente) {
+    this.confirmationService.confirm({
+      message: `Tem certeza que deseja excluir ${cliente.nome}?`,
+      accept: () => this.excluir(cliente)
+    });
+  }
+
+  excluir(cliente) {
+    this.clienteService.excluir(cliente._id)
+      .then(() => {
+        this.messageService.add({ severity: 'success', summary: `${cliente.nome} excluído com sucesso`});
+        this.consultarClientes();
+      })
+      .catch(erro => {
+        this.messageService.add({ severity: 'error', summary: 'Ocorreu um erro na requisição'});
+        console.log('Ocorreu um erro na requisição', erro);
+      });
   }
 
 }

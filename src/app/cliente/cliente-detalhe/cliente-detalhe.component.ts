@@ -1,4 +1,10 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+
+import { Cliente } from 'src/app/core/model/cliente';
+import { ClienteService } from '../cliente.service';
+
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-cliente-detalhe',
@@ -7,15 +13,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClienteDetalheComponent implements OnInit {
 
-  cliente = {
-    nome: 'Danilo Arruda',
-    email: 'danilo@email.com',
-  };
+  cliente: Cliente;
 
-
-  constructor() { }
+  constructor(
+    private clienteService: ClienteService,
+    private activatedRoute: ActivatedRoute,
+    private messageService: MessageService,
+  ) { }
 
   ngOnInit() {
+    this.buscarCliente();
   }
 
+  buscarCliente() {
+    const id = this.activatedRoute.snapshot.params.id;
+    if (id) {
+      this.clienteService.buscarPorId(id)
+        .then(cliente => {
+          this.cliente = cliente;
+        })
+        .catch(erro => {
+          this.messageService.add({ severity: 'error', summary: 'O id informado não existe' });
+        });
+    }
+  }
 }

@@ -3,7 +3,17 @@
 
   <form #form="ngForm" (ngSubmit)="submit(form)">
     <app-cliente-formulario [cliente]="cliente"></app-cliente-formulario>
-    <button type="submit" class="btn btn-primary btn-block"
-      style="margin-bottom:20px">Salvar</button>
+
+    <div class="form-row">
+      <div class="col-8">
+        <button type="submit" class="btn btn-primary btn-block"
+          style="margin-bottom:20px">Salvar</button>
+      </div>
+
+      <div class="col-4">
+        <a routerLink="/cliente" class="link-pesquisa">Voltar para a pesquisa</a>
+      </div>
+    </div>
+
   </form>
 </div>

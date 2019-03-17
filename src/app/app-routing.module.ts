@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'cliente', component: ClientePesquisaComponent },
   { path: 'cliente/cadastro', component: ClienteCadastroComponent },
   { path: 'cliente/:id', component: ClienteCadastroComponent },
-  { path: 'cliente/detalhe', component: ClienteDetalheComponent },
+  { path: 'cliente/detalhe/:id', component: ClienteDetalheComponent },
   { path: 'plano', component: PlanoPesquisaComponent },
   { path: 'plano/cadastro', component: PlanoCadastroComponent },
   { path: 'plano/:id', component: PlanoCadastroComponent },

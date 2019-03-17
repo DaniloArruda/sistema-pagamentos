@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 })
 export class ClienteService {
 
-  clienteUrl = 'http://localhost:3001/pagamento-api/cliente';
+  clienteUrl = 'https://da-pagamento-api.herokuapp.com/cliente';
 
   constructor(
     private http: HttpClient,
