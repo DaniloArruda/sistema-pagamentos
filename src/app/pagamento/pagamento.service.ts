@@ -1,3 +1,5 @@
+import { Cliente } from './../core/model/cliente';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,7 +7,9 @@ import { Injectable } from '@angular/core';
 })
 export class PagamentoService {
 
-  constructor() { }
+  pagamentoUrl = 'https://da-pagamento-api.herokuapp.com/pagamento';
+
+  constructor(private http: HttpClient) { }
 
   consultarHistorico(): Promise<any> {
     const pagamentos = [
@@ -15,5 +19,11 @@ export class PagamentoService {
     ];
 
     return Promise.resolve(pagamentos);
+  }
+
+  registrarPagamento(body) {
+    return this.http.post(this.pagamentoUrl, body)
+      .toPromise()
+      .then(clienteAtualizado => clienteAtualizado as Cliente);
   }
 }

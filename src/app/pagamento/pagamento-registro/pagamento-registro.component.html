@@ -1,28 +1,38 @@
 <div class="container">
   <h1>Registrar pagamento</h1>
 
-  <form>
+  <form #form="ngForm">
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label>Referente a</label>
-        <select  class="form-control">
-          <option>JANEIRO</option>
+        <label style="display: block;">Referente a</label>
+        <select  class="form-control" style="width:47%; display: inline-block;"
+          [(ngModel)]="mes" name="mes">
+          <option *ngFor="let mes of mesesDoAno" [value]="mes.numero">{{ mes.nome }}</option>
         </select>
+        /
+        <input type="number" class="form-control" size="6" style="width: 47%;display: inline-block;"
+          [(ngModel)]="ano" name="ano" />
       </div>
 
       <div class="form-group col-md-6">
           <label>Valor</label>
-          <input type="text" class="form-control" />
+          <input type="text" class="form-control"
+            [(ngModel)]="valor" name="valor"
+            currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative: false }" />
         </div>
     </div>
 
     <div class="form-group">
       <label>Cliente</label>
-      <select class="form-control">
-        <option>Selecione</option>
+      <select class="form-control" [(ngModel)]="clienteSelecionado" name="cliente">
+        <option value="">Selecione</option>
+        <option *ngFor="let cliente of clientes" [value]="cliente._id">
+          {{ cliente.nome }}
+        </option>
       </select>
     </div>
 
-    <button type="button" class="btn btn-primary btn-block">Salvar</button>
+    <button type="button" class="btn btn-primary btn-block"
+      (click)="registrarPagamento(form)">Salvar</button>
   </form>
 </div>
