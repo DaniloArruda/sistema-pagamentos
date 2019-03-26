@@ -5,19 +5,19 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label>Cliente</label>
-        <select class="form-control">
-          <option>Selecione</option>
+        <select class="form-control" name="cliente" [(ngModel)]="clienteId"
+          (change)="consultarHistorico()">
+          <option value="">Selecione</option>
+          <option *ngFor="let cliente of clientes" [value]="cliente._id">
+            {{ cliente.nome }}
+          </option>
         </select>
-      </div>
-
-      <div class="form-group col-md-6">
-        <button type="button" class="btn btn-primary">Pesquisar</button>
       </div>
     </div>
 
     <div class="row">
       <div class="col-12">
-        <p-table [value]="pagamentos" [responsive]="true" 
+        <p-table [value]="mensalidades" [responsive]="true"
           [paginator]="true" [rows]="12">
           <ng-template pTemplate="header">
             <tr class="table-header">
@@ -27,13 +27,15 @@
             </tr>
           </ng-template>
 
-          <ng-template pTemplate="body" let-pagamento>
+          <ng-template pTemplate="body" let-mensalidade>
             <tr>
-              <td class="col-center">{{ pagamento.mes }}</td>
-              <td class="table-valor-pago">R$ {{ pagamento.valorPago }}</td>
-              <td class="col-center"> 
-                <i class="pi pi-check-circle" style="font-size: 2em; color: #28a745;" *ngIf="pagamento.status === 'OK'"></i>
-                <i class="pi pi-times-circle" style="font-size: 2em; color: #dc3545;" *ngIf="pagamento.status === 'DEVENDO'"></i>
+              <td class="col-center">{{ mesesDoAno[mensalidade.mes-1].nome }}</td>
+              <td class="table-valor-pago">R$ {{ mensalidade.valorPago | number:'1.2-2' }}</td>
+              <td class="col-center">
+                <i class="pi pi-check-circle" style="font-size: 2em; color: #28a745;"
+                  *ngIf="mensalidade.status === 'OK'" [pTooltip]="mensalidade.status"></i>
+                <i class="pi pi-times-circle" style="font-size: 2em; color: #dc3545;"
+                  *ngIf="mensalidade.status === 'DEVENDO'" [pTooltip]="mensalidade.status"></i>
               </td>
             </tr>
           </ng-template>

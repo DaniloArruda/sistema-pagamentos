@@ -9,6 +9,7 @@ import { PagamentoRegistroComponent } from './pagamento-registro/pagamento-regis
 import { PagamentoHistoricoComponent } from './pagamento-historico/pagamento-historico.component';
 
 import { TableModule } from 'primeng/table';
+import { TooltipModule } from 'primeng/tooltip';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     FormsModule,
     RouterModule,
     TableModule,
+    TooltipModule,
     CurrencyMaskModule
   ],
   exports: [

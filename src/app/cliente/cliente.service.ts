@@ -16,10 +16,8 @@ export class ClienteService {
     private planoService: PlanoService
   ) { }
 
-  pesquisar(filtro: ClienteFiltro) {
+  private montarHttpParams(filtro: ClienteFiltro) {
     let params = new HttpParams();
-
-    console.log(filtro);
 
     if (filtro.nome) {
       params = params.set('nome', filtro.nome);
@@ -32,6 +30,26 @@ export class ClienteService {
     if (filtro.telefone) {
       params = params.set('telefone', filtro.telefone);
     }
+
+    return params;
+  }
+
+  private obterPagamentos(cliente: any) {
+    this.planoService.buscarPorId(cliente.plano)
+      .then(plano => {
+        cliente.planoObj = plano;
+      });
+  }
+
+  pesquisarResumido(filtro: ClienteFiltro) {
+    const params = this.montarHttpParams(filtro);
+    return this.http.get(`${this.clienteUrl}?resumo`, { params })
+      .toPromise()
+      .then(response => response as any);
+  }
+
+  pesquisar(filtro: ClienteFiltro) {
+    const params = this.montarHttpParams(filtro);
 
     return this.http.get(this.clienteUrl, { params })
       .toPromise()
@@ -49,10 +67,18 @@ export class ClienteService {
       });
   }
 
-  buscarPorId(id: string) {
-    return this.http.get(`${this.clienteUrl}/${id}`)
+  async buscarPorId(id: string) {
+    return this.http.get(`${this.clienteUrl}/${id}?pagamento`)
       .toPromise()
-      .then(response => response as Cliente);
+      .then(response => {
+        const cliente = response as Cliente;
+
+        for (const pagamento of cliente.pagamentos) {
+          pagamento.valor = Number(pagamento.valor);
+        }
+
+        return cliente;
+      });
   }
 
   salvar(cliente: Cliente) {

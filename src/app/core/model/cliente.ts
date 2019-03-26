@@ -1,3 +1,4 @@
+import { Pagamento } from './pagamento';
 import { Plano } from './plano';
 import { Endereco } from './endereco';
 
@@ -8,4 +9,6 @@ export class Cliente {
   telefone: string;
   endereco = new Endereco();
   plano = '';
+  planoObj?: Plano;
+  pagamentos?: Pagamento[];
 }
