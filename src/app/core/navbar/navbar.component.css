@@ -2,6 +2,10 @@
     color: #fff;
     padding-left: 40px;
     padding-top: 15px;
+
+    -webkit-box-shadow: 0px 0px 23px -2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 23px -2px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 23px -2px rgba(0,0,0,0.75);
 }
 
 .navbar-icon {
@@ -63,4 +67,9 @@
 .navbar-menu li:hover .navbar-submenu {
     display: block;
     max-height: 200px;
+}
+
+a.logo {
+    color: #fff;
+    margin-left: 15px;
 }
