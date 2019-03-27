@@ -11,6 +11,13 @@ import { PlanoService } from '../plano/plano.service';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MessageService, ConfirmationService } from 'primeng/api';
+import {
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatIconModule, 
+  MatToolbarModule, 
+  MatSidenavModule, 
+  MatListModule} from '@angular/material';
 
 registerLocaleData(localePt);
 
@@ -20,12 +27,24 @@ registerLocaleData(localePt);
     CommonModule,
     RouterModule,
     ToastModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatButtonToggleModule,
   ],
   exports: [
     NavbarComponent,
     ToastModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatButtonToggleModule,
   ],
   providers: [
     PagamentoService,
