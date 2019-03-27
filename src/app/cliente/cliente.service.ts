@@ -73,8 +73,10 @@ export class ClienteService {
       .then(response => {
         const cliente = response as Cliente;
 
-        for (const pagamento of cliente.pagamentos) {
-          pagamento.valor = Number(pagamento.valor);
+        if (cliente.pagamentos) {
+          for (const pagamento of cliente.pagamentos) {
+            pagamento.valor = Number(pagamento.valor);
+          }
         }
 
         return cliente;

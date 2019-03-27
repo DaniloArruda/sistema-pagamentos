@@ -49,10 +49,12 @@ export class PagamentoHistoricoComponent implements OnInit {
         this.clienteSelecionado = cliente;
         return null;
       })
-      .catch(erro => this.messageService.add({
-        severity: 'error',
-        summary: 'Ocorreu um erro',
-      }));
+      .catch(erro => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Ocorreu um erro',
+        });
+      });
   }
 
   construirDadosTabela() {
@@ -62,10 +64,12 @@ export class PagamentoHistoricoComponent implements OnInit {
     for (let mes = 1; mes <= mesAtual; mes++) {
       const mensalidade = { mes, valorPago: 0, status: 'DEVENDO' };
 
-      for (const pagamento of this.clienteSelecionado.pagamentos) {
-        const mesPagamento = moment(pagamento.data, 'YYYY-MM-DD').toDate().getMonth() + 1;
-        if (mes === mesPagamento) {
-          mensalidade.valorPago += Number(pagamento.valor);
+      if (this.clienteSelecionado.pagamentos) {
+        for (const pagamento of this.clienteSelecionado.pagamentos) {
+          const mesPagamento = moment(pagamento.data, 'YYYY-MM-DD').toDate().getMonth() + 1;
+          if (mes === mesPagamento) {
+            mensalidade.valorPago += Number(pagamento.valor);
+          }
         }
       }
 
