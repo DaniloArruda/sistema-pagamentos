@@ -2,8 +2,9 @@
   [style.opacity]="exibindoMenu ? '1' : '0'">
   <li class="navbar-item-menu navbar-item-menu-logo" (click)="exibindoMenu = !exibindoMenu">
     <a href="javascript:;" class="navbar-icon">
-      <i class="fa fa-bars"></i>
-      Logo
+      <i class="fa fa-bars" style="margin-right: 10px"></i>
+
+      <img src="assets/img/logo-company.png" height="32" width="130" />
     </a>
   </li>
   <li class="navbar-item-menu" routerLink="/cliente"><a><i class="fa fa-users"></i>  Clientes</a></li>
@@ -20,6 +21,6 @@
     <a href="javascript:;" class="navbar-icon" (click)="exibindoMenu = !exibindoMenu">
       <i class="fa fa-bars"></i>
     </a>
-    <a routerLink="/" class="logo">Logo</a>
+    <a routerLink="/" class="logo"><img src="assets/img/logo-company.png" height="32" width="130" /></a>
   </div>
 </nav>
