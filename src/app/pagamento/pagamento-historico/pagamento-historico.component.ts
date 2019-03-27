@@ -1,10 +1,12 @@
-import meses from 'src/app/core/util/meses';
-import { Pagamento } from './../../core/model/pagamento';
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 import { Cliente } from './../../core/model/cliente';
 import { ClienteService, ClienteFiltro } from './../../cliente/cliente.service';
 import { PagamentoService } from '../pagamento.service';
+import meses from 'src/app/core/util/meses';
 
 import { MessageService } from 'primeng/api';
 import * as moment from 'moment';
@@ -16,20 +18,42 @@ import * as moment from 'moment';
 })
 export class PagamentoHistoricoComponent implements OnInit {
 
-  clientes = [];
+  clientes: Cliente[] = [];
   clienteId = '';
+  clienteResumoSelecionado: any;
   clienteSelecionado: Cliente;
   mensalidades = [];
   mesesDoAno = meses;
+  myControl = new FormControl();
+  clientesFiltrados: Observable<Cliente[]>;  
 
   constructor(
-    private pagamentoService: PagamentoService,
     private clienteService: ClienteService,
     private messageService: MessageService,
   ) { }
 
-  ngOnInit() {
-    this.consultarClientes();
+  async ngOnInit() {
+    await this.consultarClientes();
+    this.clientesFiltrados = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
+  }
+
+  private _filter(value: any): Cliente[] {
+    let filterValue: string;
+    if(value._id){
+      filterValue = value.nome.toLowerCase();
+    } else {
+      filterValue = value.toLowerCase();
+    }
+
+    return this.clientes.filter(cliente => cliente.nome.toLowerCase().includes(filterValue));
+  }
+
+  displayFn(cliente: Cliente) {
+    if (cliente) { return cliente.nome; }
   }
 
   consultarHistorico() {
@@ -39,12 +63,12 @@ export class PagamentoHistoricoComponent implements OnInit {
   }
 
   consultarClientes() {
-    this.clienteService.pesquisarResumido(new ClienteFiltro())
+    return this.clienteService.pesquisarResumido(new ClienteFiltro())
       .then(clientes => this.clientes = clientes);
   }
 
   pesquisarCliente() {
-    return this.clienteService.buscarPorId(this.clienteId)
+    return this.clienteService.buscarPorId(this.clienteResumoSelecionado._id)
       .then(cliente => {
         this.clienteSelecionado = cliente;
         return null;

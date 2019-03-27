@@ -1,17 +1,18 @@
 <div class="container">
   <h1>Histórico de pagamento</h1>
-
   <form>
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label>Cliente</label>
-        <select class="form-control" name="cliente" [(ngModel)]="clienteId"
-          (change)="consultarHistorico()">
-          <option value="">Selecione</option>
-          <option *ngFor="let cliente of clientes" [value]="cliente._id">
-            {{ cliente.nome }}
-          </option>
-        </select>
+        <mat-form-field style="width:100%">
+          <input type="text" placeholder="Cliente" [(ngModel)]="clienteResumoSelecionado"
+            matInput [formControl]="myControl" [matAutocomplete]="auto" />
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"
+            (optionSelected)="consultarHistorico()">
+            <mat-option *ngFor="let cliente of clientesFiltrados | async" [value]="cliente">
+              {{ cliente.nome }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
       </div>
     </div>
 
