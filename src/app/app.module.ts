@@ -10,6 +10,7 @@ import { CoreModule } from './core/core.module';
 import { PagamentoModule } from './pagamento/pagamento.module';
 import { ClienteModule } from './cliente/cliente.module';
 import { PlanoModule } from './plano/plano.module';
+import { SegurancaModule } from './seguranca/seguranca.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { PlanoModule } from './plano/plano.module';
     PagamentoModule,
     ClienteModule,
     PlanoModule,
+    SegurancaModule,
     AppRoutingModule
   ],
   providers: [],
