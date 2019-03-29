@@ -8,17 +8,22 @@ import { ClienteDetalheComponent } from './cliente/cliente-detalhe/cliente-detal
 import { PlanoPesquisaComponent } from './plano/plano-pesquisa/plano-pesquisa.component';
 import { PlanoCadastroComponent } from './plano/plano-cadastro/plano-cadastro.component';
 import { ClientePesquisaComponent } from './cliente/cliente-pesquisa/cliente-pesquisa.component';
+import { LoginFormComponent } from './seguranca/login-form/login-form.component';
+import { AuthGuard } from './seguranca/auth.guard';
 
 const routes: Routes = [
-  { path: 'pagamento', component: PagamentoRegistroComponent },
-  { path: 'historico', component: PagamentoHistoricoComponent },
-  { path: 'cliente', component: ClientePesquisaComponent },
-  { path: 'cliente/cadastro', component: ClienteCadastroComponent },
-  { path: 'cliente/:id', component: ClienteCadastroComponent },
-  { path: 'cliente/detalhe/:id', component: ClienteDetalheComponent },
-  { path: 'plano', component: PlanoPesquisaComponent },
-  { path: 'plano/cadastro', component: PlanoCadastroComponent },
-  { path: 'plano/:id', component: PlanoCadastroComponent },
+  { path: 'pagamento', component: PagamentoRegistroComponent, canActivate: [AuthGuard] },
+  { path: 'historico', component: PagamentoHistoricoComponent, canActivate: [AuthGuard] },
+  { path: 'cliente', component: ClientePesquisaComponent, canActivate: [AuthGuard] },
+  { path: 'cliente/cadastro', component: ClienteCadastroComponent, canActivate: [AuthGuard] },
+  { path: 'cliente/:id', component: ClienteCadastroComponent, canActivate: [AuthGuard] },
+  { path: 'cliente/detalhe/:id', component: ClienteDetalheComponent, canActivate: [AuthGuard] },
+  { path: 'plano', component: PlanoPesquisaComponent, canActivate: [AuthGuard] },
+  { path: 'plano/cadastro', component: PlanoCadastroComponent, canActivate: [AuthGuard] },
+  { path: 'plano/:id', component: PlanoCadastroComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginFormComponent },
+  { path: '', redirectTo: 'historico', pathMatch: 'full' },
+
 ];
 
 @NgModule({
