@@ -10,6 +10,7 @@ import { PlanoCadastroComponent } from './plano/plano-cadastro/plano-cadastro.co
 import { ClientePesquisaComponent } from './cliente/cliente-pesquisa/cliente-pesquisa.component';
 import { LoginFormComponent } from './seguranca/login-form/login-form.component';
 import { AuthGuard } from './seguranca/auth.guard';
+import { DashboardComponent } from './core/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: 'pagamento', component: PagamentoRegistroComponent, canActivate: [AuthGuard] },
@@ -21,8 +22,9 @@ const routes: Routes = [
   { path: 'plano', component: PlanoPesquisaComponent, canActivate: [AuthGuard] },
   { path: 'plano/cadastro', component: PlanoCadastroComponent, canActivate: [AuthGuard] },
   { path: 'plano/:id', component: PlanoCadastroComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginFormComponent },
-  { path: '', redirectTo: 'historico', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 
 ];
 

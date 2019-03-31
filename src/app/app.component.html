@@ -3,7 +3,7 @@
         <button mat-icon-button (click)="snav.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
-        <h1 class="example-app-name">Responsive App</h1>
+        <h1 class="example-app-name" style="cursor:pointer;" routerLink="/dashboard">Responsive App</h1>
     </mat-toolbar>
 
     <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
@@ -29,8 +29,7 @@
         </mat-sidenav>
 
         <mat-sidenav-content>
-            <!--<router-outlet></router-outlet>-->
-            <app-dashboard></app-dashboard>
+            <router-outlet></router-outlet>
         </mat-sidenav-content>
     </mat-sidenav-container>
 </div>

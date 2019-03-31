@@ -24,7 +24,7 @@ export class LoginFormComponent implements OnInit {
 
   login() {
     this.auth.login(this.email, this.senha)
-      .then(() => this.router.navigate(['/historico']))
+      .then(() => this.router.navigate(['/dashboard']))
       .catch(erro => {
         console.log(erro);
         this.messageService.add({ severity: 'error', summary: 'Ocorreu um erro' });
