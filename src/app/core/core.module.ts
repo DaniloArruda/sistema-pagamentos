@@ -17,26 +17,32 @@ import {
   MatIconModule, 
   MatToolbarModule, 
   MatSidenavModule, 
-  MatListModule} from '@angular/material';
+  MatListModule,
+  MatCardModule} from '@angular/material';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { SharedModule } from '../shared/shared.module';
 
 registerLocaleData(localePt);
 
 @NgModule({
-  declarations: [NavbarComponent],
+  declarations: [NavbarComponent, DashboardComponent],
   imports: [
     CommonModule,
     RouterModule,
     ToastModule,
     ConfirmDialogModule,
+    SharedModule,
     MatIconModule,
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
     MatButtonModule,
     MatButtonToggleModule,
+    MatCardModule,
   ],
   exports: [
     NavbarComponent,
+    DashboardComponent,
     ToastModule,
     ConfirmDialogModule,
     MatIconModule,

@@ -29,6 +29,46 @@ form button {
     margin-top: 30px;
 }
 
+.my-card {
+    background: #fff;
+    color: rgba(0,0,0,.87);
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    display: block;
+    position: relative;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+}
+
+.my-icon-big {
+    font-size: 3em !important;
+    min-height: 64px !important;
+}
+
+.my-icon-big i {
+    font-size: 1em !important;
+}
+
+.my-icon-big img {
+    vertical-align: unset;
+}
+
+.my-card .numbers {
+    font-size: 1.8em;
+    text-align: right;
+}
+
+.my-card .numbers p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.4em;
+}
+
+.text-center {
+    text-align: center;
+}
+
 legend {
   width: unset !important;
 }
