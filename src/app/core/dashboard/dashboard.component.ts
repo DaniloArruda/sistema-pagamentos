@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
 
   qtdClientes = 0;
+  clienteDevedores = [];
 
   constructor(
     private clienteService: ClienteService
@@ -17,5 +18,14 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.clienteService.contar()
       .then(quantidade => this.qtdClientes = quantidade);
+
+    this.clienteService.devedores()
+      .then(clientes => this.clienteDevedores = clientes);
+  }
+
+  valorCardClientesDevedores() {
+    const qtdClienteDevedores = this.clienteDevedores.length;
+    const percentual = (qtdClienteDevedores / this.qtdClientes) * 100;
+    return `${qtdClienteDevedores} (${percentual} %)`
   }
 }

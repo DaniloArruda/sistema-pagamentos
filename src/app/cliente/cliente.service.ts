@@ -107,6 +107,12 @@ export class ClienteService {
       .toPromise()
       .then(response => response['count']);
   }
+
+  devedores() {
+    return this.http.get(`${this.clienteUrl}/devedores`)
+      .toPromise()
+      .then(response => response as any)
+  }
 }
 
 export class ClienteFiltro {
