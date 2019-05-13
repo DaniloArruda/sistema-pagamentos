@@ -9,7 +9,8 @@ import { Injectable } from '@angular/core';
 })
 export class ClienteService {
 
-  clienteUrl = 'https://da-pagamento-api.herokuapp.com/cliente';
+  // clienteUrl = 'https://da-pagamento-api.herokuapp.com/cliente';
+  clienteUrl = 'http://localhost:5000/cliente';
 
   constructor(
     private http: HttpClient,
@@ -99,6 +100,12 @@ export class ClienteService {
     return this.http.delete(`${this.clienteUrl}/${id}`)
       .toPromise()
       .then(() => null);
+  }
+
+  contar() {
+    return this.http.get(`${this.clienteUrl}/quantidade`)
+      .toPromise()
+      .then(response => response['count']);
   }
 }
 

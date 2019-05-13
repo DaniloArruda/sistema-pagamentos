@@ -14,11 +14,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
-  
+
   @ViewChild('snav') sidenav: MatSidenav;
 
   constructor(
-    changeDetectorRef: ChangeDetectorRef, 
+    changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
     private router: Router,
     private auth: AuthService,
@@ -27,10 +27,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
-  
+
   ngOnInit() {
   }
-  
+
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
@@ -41,7 +41,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   logout() {
     this.auth.logout();
-    this.sidenav.toggle();
+    this.sidenav.close();
     this.router.navigate(['/login']);
   }
 }

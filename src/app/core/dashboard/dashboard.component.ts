@@ -1,3 +1,4 @@
+import { ClienteService } from './../../cliente/cliente.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  qtdClientes = 0;
+
+  constructor(
+    private clienteService: ClienteService
+  ) { }
 
   ngOnInit() {
+    this.clienteService.contar()
+      .then(quantidade => this.qtdClientes = quantidade);
   }
-
 }

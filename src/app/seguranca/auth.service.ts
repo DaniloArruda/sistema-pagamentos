@@ -8,7 +8,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AuthService {
 
-  authUrl = 'http://localhost:5000/usuario/autenticar';
+  authUrl = 'https://da-pagamento-api.herokuapp.com/usuario/autenticar';
   jwtPayload: any;
   jwtHelper = new JwtHelperService();
 
@@ -29,7 +29,8 @@ export class AuthService {
       .toPromise()
       .then(response => {
         console.log('logou', response);
-        this.armazenarToken(response['token'])});
+        this.armazenarToken(response['token']);
+      });
   }
 
   armazenarToken(token: string) {

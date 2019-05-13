@@ -25,7 +25,7 @@ export class PagamentoHistoricoComponent implements OnInit {
   mensalidades = [];
   mesesDoAno = meses;
   myControl = new FormControl();
-  clientesFiltrados: Observable<Cliente[]>;  
+  clientesFiltrados: Observable<Cliente[]>;
 
   constructor(
     private clienteService: ClienteService,
@@ -43,7 +43,7 @@ export class PagamentoHistoricoComponent implements OnInit {
 
   private _filter(value: any): Cliente[] {
     let filterValue: string;
-    if(value._id){
+    if (value._id) {
       filterValue = value.nome.toLowerCase();
     } else {
       filterValue = value.toLowerCase();
