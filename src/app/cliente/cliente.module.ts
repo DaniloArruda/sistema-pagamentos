@@ -8,13 +8,20 @@ import { ClienteCadastroComponent } from './cliente-cadastro/cliente-cadastro.co
 import { ClienteFormularioComponent } from './cliente-formulario/cliente-formulario.component';
 import { ClienteDetalheComponent } from './cliente-detalhe/cliente-detalhe.component';
 import { ClientePesquisaComponent } from './cliente-pesquisa/cliente-pesquisa.component';
+import { ClienteFormularioPesquisaComponent } from './cliente-formulario-pesquisa/cliente-formulario-pesquisa.component';
 
 import { FieldsetModule } from 'primeng/fieldset';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 
 @NgModule({
-  declarations: [ClienteCadastroComponent, ClienteFormularioComponent, ClienteDetalheComponent, ClientePesquisaComponent],
+  declarations: [
+    ClienteCadastroComponent,
+    ClienteFormularioComponent,
+    ClienteDetalheComponent,
+    ClientePesquisaComponent,
+    ClienteFormularioPesquisaComponent
+  ],
   imports: [
     BrowserAnimationsModule,
     CommonModule,
@@ -24,6 +31,9 @@ import { ButtonModule } from 'primeng/button';
     FieldsetModule,
     TableModule,
     ButtonModule,
+  ],
+  exports: [
+    ClienteFormularioPesquisaComponent
   ]
 })
 export class ClienteModule { }

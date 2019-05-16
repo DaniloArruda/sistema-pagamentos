@@ -12,47 +12,9 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class ClientePesquisaComponent implements OnInit {
 
-  clientes = [];
-  clienteFiltro = new ClienteFiltro();
-
-  constructor(
-    private clienteService: ClienteService,
-    private planoService: PlanoService,
-    private confirmationService: ConfirmationService,
-    private messageService: MessageService
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-    this.consultarClientes();
-  }
-
-  consultarClientes() {
-    this.clienteService.pesquisar(this.clienteFiltro)
-      .then(clientes => this.clientes = clientes);
-  }
-
-  plano(id: string) {
-    this.planoService.buscarPorId(id)
-      .then(plano => plano._id);
-  }
-
-  confirmarExclusao(cliente) {
-    this.confirmationService.confirm({
-      message: `Tem certeza que deseja excluir ${cliente.nome}?`,
-      accept: () => this.excluir(cliente)
-    });
-  }
-
-  excluir(cliente) {
-    this.clienteService.excluir(cliente._id)
-      .then(() => {
-        this.messageService.add({ severity: 'success', summary: `${cliente.nome} excluído com sucesso`});
-        this.consultarClientes();
-      })
-      .catch(erro => {
-        this.messageService.add({ severity: 'error', summary: 'Ocorreu um erro na requisição'});
-        console.log('Ocorreu um erro na requisição', erro);
-      });
   }
 
 }

@@ -1,12 +1,11 @@
 <div class="my-card">
   <div class="row">
-    <div class="col-5">
+    <div class="col-3">
       <div class="my-icon-big text-center">
-        <!--<i class="material-icons md-48">{{ nomeIcone }}</i>-->
-        <ng-content></ng-content>
+        <ng-content select="[icon]"></ng-content>
       </div>
     </div>
-    <div class="col-7">
+    <div class="col-9">
       <div class="numbers">
         <p>{{ descricao }}</p>
         {{ numero }}
@@ -16,7 +15,7 @@
   <div class="footer">
     <hr>
     <div class="action">
-      <button class="btn btn-primary btn-sm">Cadastrar</button>
+      <ng-content select="[button]"></ng-content>
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { ClienteService } from './../../cliente/cliente.service';
+import { ClienteService, ClienteFiltro } from './../../cliente/cliente.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -26,6 +26,6 @@ export class DashboardComponent implements OnInit {
   valorCardClientesDevedores() {
     const qtdClienteDevedores = this.clienteDevedores.length;
     const percentual = (qtdClienteDevedores / this.qtdClientes) * 100;
-    return `${qtdClienteDevedores} (${percentual} %)`
+    return `${qtdClienteDevedores} (${percentual.toFixed(2)} %)`;
   }
 }

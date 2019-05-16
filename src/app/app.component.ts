@@ -29,6 +29,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.sidenav.open();
   }
 
   ngOnDestroy(): void {

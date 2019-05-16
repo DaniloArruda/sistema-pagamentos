@@ -1,5 +1,6 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-    <mat-toolbar color="warn" class="example-toolbar mat-elevation-z6" *ngIf="exibindoNavbar()">
+    <mat-toolbar color="warn" class="example-toolbar mat-elevation-z6" *ngIf="exibindoNavbar()"
+      style="height: 50px">
         <button mat-icon-button (click)="snav.toggle()">
           <mat-icon>menu</mat-icon>
         </button>

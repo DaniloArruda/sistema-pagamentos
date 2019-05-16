@@ -1,73 +1,12 @@
 <div class="container">
   <h1>Clientes</h1>
 
-  <form #form="ngForm" (ngSubmit)="consultarClientes()">
-    <div class="form-row">
-      <div class="form-group col-md-4">
-        <label>Nome</label>
-        <input type="text" name="nome" class="form-control" [readonly]="somenteLeitura"
-          [(ngModel)]="clienteFiltro.nome" />
-      </div>
+  <app-cliente-formulario-pesquisa></app-cliente-formulario-pesquisa>
 
-      <div class="form-group col-md-4">
-        <label>E-mail</label>
-        <input type="text" name="email" class="form-control" [readonly]="somenteLeitura"
-          [(ngModel)]="clienteFiltro.email" />
-      </div>
-
-      <div class="form-group col-md-4">
-        <label>Telefone</label>
-        <input type="text" name="telefone" class="form-control" [readonly]="somenteLeitura"
-          [(ngModel)]="clienteFiltro.telefone" />
-      </div>
+  <div class="form-row">
+    <div class="form-group col-12">
+      <button type="button" class="btn btn-primary" routerLink="/cliente/cadastro"
+        style="margin-top: 20px">Novo cliente</button>
     </div>
-
-    <div class="form-row">
-      <div class="form-group col-12">
-        <button type="submit" class="btn btn-primary" style="margin-top:5px">Pesquisar</button>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <p-table [value]="clientes" [responsive]="true"
-        [paginator]="true" [rows]="5">
-        <ng-template pTemplate="header">
-          <tr style="text-align: center">
-            <th>Nome</th>
-            <th>E-mail</th>
-            <th style="width:140px">Plano</th>
-            <th style="width:100px"></th>
-          </tr>
-        </ng-template>
-
-        <ng-template pTemplate="body" let-cliente>
-          <tr>
-            <td><a [routerLink]="['/cliente/detalhe', cliente._id]">{{ cliente.nome }}</a></td>
-            <td>{{ cliente.email }}</td>
-            <td style="text-align: center">{{ cliente.planoObj?.nome }}</td>
-            <td>
-              <a pButton icon="pi pi-pencil" [routerLink]="['/cliente', cliente._id]"
-                style="margin-right: 5px"></a>
-              <button pButton icon="pi pi-trash" (click)="confirmarExclusao(cliente)"></button>
-            </td>
-          </tr>
-        </ng-template>
-
-        <ng-template pTemplate="emptymessage" let-columns>
-          <tr>
-            <td colspan="4">
-              Não há clientes cadastrados ainda
-            </td>
-          </tr>
-      </ng-template>
-
-      </p-table>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group col-12">
-        <button type="button" class="btn btn-primary" routerLink="/cliente/cadastro">Novo cliente</button>
-      </div>
-    </div>
-  </form>
+  </div>
 </div>
