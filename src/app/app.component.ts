@@ -3,6 +3,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import { AuthService } from './seguranca/auth.service';
 import { MatSidenav } from '@angular/material';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-root',
@@ -30,6 +31,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sidenav.open();
+    moment.locale('pt-br');
   }
 
   ngOnDestroy(): void {

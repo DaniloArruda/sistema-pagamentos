@@ -7,7 +7,7 @@ export class Cliente {
   nome: string;
   email: string;
   telefone: string;
-  dataInicio: Date;
+  createdAt: Date;
   endereco = new Endereco();
   plano = '';
   planoObj?: Plano;

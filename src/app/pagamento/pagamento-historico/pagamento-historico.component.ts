@@ -22,6 +22,7 @@ export class PagamentoHistoricoComponent implements OnInit {
   clienteId = '';
   clienteResumoSelecionado: any;
   clienteSelecionado: Cliente;
+  mesInicio = '';
   mensalidades = [];
   mesesDoAno = meses;
   myControl = new FormControl();
@@ -58,6 +59,7 @@ export class PagamentoHistoricoComponent implements OnInit {
 
   consultarHistorico() {
     this.pesquisarCliente().then(() => {
+      this.mesInicio = moment(this.clienteSelecionado.createdAt).format('MMMM');
       this.construirDadosTabela();
     });
   }
@@ -76,7 +78,7 @@ export class PagamentoHistoricoComponent implements OnInit {
       .catch(erro => {
         this.messageService.add({
           severity: 'error',
-          summary: 'Ocorreu um erro',
+          summary: `Ocorreu um erro: ${erro}`,
         });
       });
   }
