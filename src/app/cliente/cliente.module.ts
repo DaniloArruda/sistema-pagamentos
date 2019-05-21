@@ -13,6 +13,8 @@ import { ClienteFormularioPesquisaComponent } from './cliente-formulario-pesquis
 import { FieldsetModule } from 'primeng/fieldset';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { CdkTableModule } from '@angular/cdk/table';
+import { MatTableModule, MatInputModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -31,9 +33,14 @@ import { ButtonModule } from 'primeng/button';
     FieldsetModule,
     TableModule,
     ButtonModule,
+    CdkTableModule,
+    MatTableModule,
+    MatInputModule
   ],
   exports: [
-    ClienteFormularioPesquisaComponent
+    ClienteFormularioPesquisaComponent,
+    CdkTableModule,
+    MatTableModule
   ]
 })
 export class ClienteModule { }

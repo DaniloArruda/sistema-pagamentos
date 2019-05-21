@@ -30,7 +30,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.sidenav.open();
+    if (!this.exibindoNavbar()) {
+      this.sidenav.open();
+    }
+
     moment.locale('pt-br');
   }
 
