@@ -10,10 +10,12 @@ import { PlanoCadastroComponent } from './plano-cadastro/plano-cadastro.componen
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
-import { MatTableModule } from '@angular/material';
+import { MatTableModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule } from '@angular/material';
+import { PlanoCadastroDialogComponent } from './plano-cadastro-dialog/plano-cadastro-dialog.component';
 
 @NgModule({
-  declarations: [PlanoPesquisaComponent, PlanoCadastroComponent],
+  declarations: [PlanoPesquisaComponent, PlanoCadastroComponent, PlanoCadastroDialogComponent],
+  entryComponents: [PlanoPesquisaComponent, PlanoCadastroComponent, PlanoCadastroDialogComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -22,7 +24,12 @@ import { MatTableModule } from '@angular/material';
     TableModule,
     ButtonModule,
     CurrencyMaskModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule
   ]
 })
 export class PlanoModule { }

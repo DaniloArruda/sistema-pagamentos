@@ -25,9 +25,15 @@
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let plano" style="text-align: right">
-            <a pButton href="javascript:;" icon="pi pi-pencil" style="margin-right: 5px;"
-              [routerLink]="['/plano', plano._id]"></a>
-            <button pButton icon="pi pi-trash" (click)="confirmarExclusao(plano)"></button>
+            <button mat-icon-button [routerLink]="['/plano', plano._id]"
+              style="color: #007bff" >
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-icon-button (click)="confirmarExclusao(plano)"
+              style="color: #c23d57" >
+              <mat-icon>delete</mat-icon>
+            </button>
           </td>
         </ng-container>
       </table>
@@ -37,8 +43,9 @@
 
   <div class="row">
     <div class="col-12">
-      <a pButton href="javascript:;" label="Novo plano" routerLink="/plano/cadastro"
-        style="margin-top: 20px"></a>
+      <button mat-fab (click)="openDialog()" style="margin-top:20px; background-color: #007bff">
+        <mat-icon>add</mat-icon>
+      </button>
     </div>
   </div>
 </div>

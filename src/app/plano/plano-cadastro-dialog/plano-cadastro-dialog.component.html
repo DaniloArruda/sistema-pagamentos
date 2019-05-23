@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Cadastro de plano</h1>
+<div mat-dialog-content>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Nome" name="nome"
+        [(ngModel)]="plano.nome" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Valor" name="valor"
+        [(ngModel)]="plano.valor" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Quantidade de dados" type="number"
+        name="qtdDados" [(ngModel)]="plano.qtdDados" />
+    </mat-form-field>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-button (click)="salvar()" [mat-dialog-close]="data" cdkFocusInitial>Salvar</button>
+</div>

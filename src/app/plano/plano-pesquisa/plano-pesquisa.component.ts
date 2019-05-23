@@ -4,6 +4,8 @@ import { PlanoService } from '../plano.service';
 
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Plano } from 'src/app/core/model/plano';
+import { MatDialog } from '@angular/material';
+import { PlanoCadastroDialogComponent } from '../plano-cadastro-dialog/plano-cadastro-dialog.component';
 
 @Component({
   selector: 'app-plano-pesquisa',
@@ -18,7 +20,8 @@ export class PlanoPesquisaComponent implements OnInit {
   constructor(
     private planoService: PlanoService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -48,6 +51,15 @@ export class PlanoPesquisaComponent implements OnInit {
         console.log('Ocorreu um erro', erro);
         this.messageService.add({ severity: 'error', summary: 'Ocorreu um erro ao processar a requisição.' });
       });
+  }
+
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(PlanoCadastroDialogComponent, {
+      width: "300px"
+    });
+
+    dialogRef.afterClosed().subscribe(() => this.consultarPlanos());
   }
 
 }
