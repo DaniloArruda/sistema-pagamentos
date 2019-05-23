@@ -10,6 +10,7 @@ import { PlanoCadastroComponent } from './plano-cadastro/plano-cadastro.componen
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { MatTableModule } from '@angular/material';
 
 @NgModule({
   declarations: [PlanoPesquisaComponent, PlanoCadastroComponent],
@@ -20,7 +21,8 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     RouterModule,
     TableModule,
     ButtonModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    MatTableModule
   ]
 })
 export class PlanoModule { }

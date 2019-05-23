@@ -13,6 +13,7 @@ import { Plano } from 'src/app/core/model/plano';
 export class PlanoPesquisaComponent implements OnInit {
 
   planos = [];
+  displayedColumns: string[] = ['nome', 'valor', 'qtdDados', 'actions'];
 
   constructor(
     private planoService: PlanoService,

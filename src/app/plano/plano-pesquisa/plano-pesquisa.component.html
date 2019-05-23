@@ -3,30 +3,34 @@
 
   <div class="row">
     <div class="col-12">
-      <p-table [value]="planos" [responsive]="true"
-        [paginator]="true" [rows]="10">
-        <ng-template pTemplate="header">
-          <tr style="text-align:center;">
-            <th>Nome</th>
-            <th>Valor</th>
-            <th>Quantidade de dados</th>
-            <th style="width: 100px;"></th>
-          </tr>
-        </ng-template>
+      <table mat-table [dataSource]="planos" class="mat-elevation-z2 full-width" style="margin-top:15px">
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
-        <ng-template pTemplate="body" let-plano>
-          <tr>
-            <td>{{ plano.nome }}</td>
-            <td style="text-align: right">R$ {{ plano.valor | number:'1.2-2' }}</td>
-            <td style="text-align: center">{{ plano.qtdDados }} MB</td>
-            <td>
-              <a pButton href="javascript:;" icon="pi pi-pencil" style="margin-right: 5px;"
-                [routerLink]="['/plano', plano._id]"></a>
-              <button pButton icon="pi pi-trash" (click)="confirmarExclusao(plano)"></button>
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
+        <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef> Nome </th>
+          <td mat-cell *matCellDef="let plano">{{ plano.nome }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="valor">
+          <th mat-header-cell *matHeaderCellDef> Valor </th>
+          <td mat-cell *matCellDef="let plano">R$ {{ plano.valor | number:'1.2-2' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="qtdDados">
+          <th mat-header-cell *matHeaderCellDef> Quantidade de dados </th>
+          <td mat-cell *matCellDef="let plano">{{ plano.qtdDados }} MB</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let plano" style="text-align: right">
+            <a pButton href="javascript:;" icon="pi pi-pencil" style="margin-right: 5px;"
+              [routerLink]="['/plano', plano._id]"></a>
+            <button pButton icon="pi pi-trash" (click)="confirmarExclusao(plano)"></button>
+          </td>
+        </ng-container>
+      </table>
     </div>
   </div>
 
