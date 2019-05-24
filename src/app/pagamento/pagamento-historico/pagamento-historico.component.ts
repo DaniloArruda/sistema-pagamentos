@@ -18,6 +18,7 @@ import * as moment from 'moment';
 })
 export class PagamentoHistoricoComponent implements OnInit {
 
+  displayedColumns: string[] = ['mes', 'valorPago', 'status'];
   clientes: Cliente[] = [];
   clienteId = '';
   clienteResumoSelecionado: any;

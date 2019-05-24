@@ -22,29 +22,30 @@
 
     <div class="row">
       <div class="col-12">
-        <p-table [value]="mensalidades" [responsive]="true"
-          [paginator]="true" [rows]="12">
-          <ng-template pTemplate="header">
-            <tr class="table-header">
-              <th>Mês</th>
-              <th>Valor pago</th>
-              <th>Status</th>
-            </tr>
-          </ng-template>
+        <table mat-table [dataSource]="mensalidades" class="mat-elevation-z2 full-width" >
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
-          <ng-template pTemplate="body" let-mensalidade>
-            <tr>
-              <td class="col-center">{{ mesesDoAno[mensalidade.mes-1].nome }}</td>
-              <td class="table-valor-pago">R$ {{ mensalidade.valorPago | number:'1.2-2' }}</td>
-              <td class="col-center">
-                <i class="pi pi-check-circle" style="font-size: 2em; color: #28a745;"
-                  *ngIf="mensalidade.status === 'OK'" [pTooltip]="mensalidade.status"></i>
-                <i class="pi pi-times-circle" style="font-size: 2em; color: #dc3545;"
-                  *ngIf="mensalidade.status === 'DEVENDO'" [pTooltip]="mensalidade.status"></i>
-              </td>
-            </tr>
-          </ng-template>
-        </p-table>
+          <ng-container matColumnDef="mes">
+            <th mat-header-cell *matHeaderCellDef> Mês </th>
+            <td mat-cell *matCellDef="let mensalidade">{{ mesesDoAno[mensalidade.mes-1].nome }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="valorPago">
+            <th mat-header-cell *matHeaderCellDef> Valor pago </th>
+            <td mat-cell *matCellDef="let mensalidade">R$ {{ mensalidade.valorPago | number:'1.2-2' }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef class="col-center"> Status </th>
+            <td mat-cell *matCellDef="let mensalidade" class="col-center">
+              <i class="pi pi-check-circle" style="font-size: 2em; color: #28a745;"
+                *ngIf="mensalidade.status === 'OK'" [pTooltip]="mensalidade.status"></i>
+              <i class="pi pi-times-circle" style="font-size: 2em; color: #dc3545;"
+                *ngIf="mensalidade.status === 'DEVENDO'" [pTooltip]="mensalidade.status"></i>
+            </td>
+          </ng-container>
+        </table>
       </div>
     </div>
   </form>
