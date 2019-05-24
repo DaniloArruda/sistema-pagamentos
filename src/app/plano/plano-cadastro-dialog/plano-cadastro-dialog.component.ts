@@ -17,16 +17,37 @@ export class PlanoCadastroDialogComponent implements OnInit {
     private planoService: PlanoService,
     private messageService: MessageService,
     public dialogRef: MatDialogRef<PlanoCadastroDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public planoEdicao: Plano
   ) { }
 
   ngOnInit() {
+    if (this.planoEdicao) {
+      this.plano = { ...this.planoEdicao };
+    }
   }
 
   salvar() {
+    if (!this.planoEdicao) {
+      this.cadastrar();
+    } else {
+      this.atualizar();
+    }
+  }
+
+  cadastrar() {
     this.planoService.salvar(this.plano)
       .then(plano => {
         this.messageService.add({severity: 'success', summary: 'Plano salvo com sucesso.'});
+      })
+      .catch(erro => {
+        this.messageService.add({severity: 'error', summary: 'Erro ao cadastrar plano.'});
+      });
+  }
+
+  atualizar() {
+    this.planoService.atualizar(this.plano)
+      .then(plano => {
+        this.messageService.add({severity: 'success', summary: 'Plano atualizado com sucesso.'});
       })
       .catch(erro => {
         this.messageService.add({severity: 'error', summary: 'Erro ao cadastrar plano.'});

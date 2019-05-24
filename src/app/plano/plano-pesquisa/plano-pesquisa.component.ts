@@ -54,9 +54,18 @@ export class PlanoPesquisaComponent implements OnInit {
   }
 
 
-  openDialog(): void {
+  openDialogCadastro(): void {
     const dialogRef = this.dialog.open(PlanoCadastroDialogComponent, {
       width: "300px"
+    });
+
+    dialogRef.afterClosed().subscribe(() => this.consultarPlanos());
+  }
+
+  openDialogEdicao(plano: Plano): void {
+    const dialogRef = this.dialog.open(PlanoCadastroDialogComponent, {
+      width: "300px",
+      data: plano
     });
 
     dialogRef.afterClosed().subscribe(() => this.consultarPlanos());

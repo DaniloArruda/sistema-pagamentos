@@ -7,7 +7,8 @@
 
     <mat-form-field class="full-width">
       <input matInput placeholder="Valor" name="valor"
-        [(ngModel)]="plano.valor" />
+        [(ngModel)]="plano.valor" currencyMask
+        [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative: false, align: 'left' }"/>
     </mat-form-field>
 
     <mat-form-field class="full-width">
@@ -18,5 +19,6 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="cancelar()">Cancelar</button>
-  <button mat-button (click)="salvar()" [mat-dialog-close]="data" cdkFocusInitial>Salvar</button>
+  <button mat-button (click)="salvar()" [mat-dialog-close]="planoEdicao"
+    cdkFocusInitial>Salvar</button>
 </div>
