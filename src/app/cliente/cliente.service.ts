@@ -113,6 +113,15 @@ export class ClienteService {
       .toPromise()
       .then(response => response as any)
   }
+
+  dinheiroDevendo() {
+    return this.http.get(`${this.clienteUrl}/dinheiroDevendo`)
+      .toPromise()
+      .then(response => {
+        const data = response as any;
+        return data.valor;
+      })
+  }
 }
 
 export class ClienteFiltro {

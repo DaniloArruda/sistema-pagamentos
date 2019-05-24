@@ -15,7 +15,7 @@
       </app-card>
     </div>
     <div class="col-lg-4 col-md-6">
-        <app-card descricao="Perdendo..." numero="R$ 238,00">
+        <app-card descricao="Perdendo..." [numero]="valorCardDinheiroPerdendo()">
           <i class="material-icons" style="color: red" icon >money_off</i>
           <button class="btn btn-primary btn-sm"
             routerLink="/pagamento" button >Registrar pagamento</button>

@@ -10,6 +10,7 @@ export class DashboardComponent implements OnInit {
 
   qtdClientes = 0;
   clienteDevedores = [];
+  clientesDinheiroDevendo = 0;
 
   constructor(
     private clienteService: ClienteService
@@ -21,11 +22,18 @@ export class DashboardComponent implements OnInit {
 
     this.clienteService.devedores()
       .then(clientes => this.clienteDevedores = clientes);
+
+    this.clienteService.dinheiroDevendo()
+      .then(valor => this.clientesDinheiroDevendo = valor);
   }
 
   valorCardClientesDevedores() {
     const qtdClienteDevedores = this.clienteDevedores.length;
     const percentual = (qtdClienteDevedores / this.qtdClientes) * 100;
     return `${qtdClienteDevedores} (${percentual.toFixed(2)} %)`;
+  }
+
+  valorCardDinheiroPerdendo() {
+    return `R$ ${this.clientesDinheiroDevendo}`;
   }
 }
