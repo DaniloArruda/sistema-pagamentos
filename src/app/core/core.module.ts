@@ -21,7 +21,8 @@ import {
   MatToolbarModule,
   MatSidenavModule,
   MatListModule,
-  MatCardModule
+  MatCardModule,
+  MatDialogModule
 } from '@angular/material';
 import { SharedModule } from '../shared/shared.module';
 
@@ -44,6 +45,7 @@ registerLocaleData(localePt);
     MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,
+    MatDialogModule
   ],
   exports: [
     NavbarComponent,

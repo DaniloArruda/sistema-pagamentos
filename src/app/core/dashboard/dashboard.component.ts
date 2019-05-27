@@ -1,3 +1,5 @@
+import { ClientesDevedoresDialogComponent } from './../../cliente/clientes-devedores-dialog/clientes-devedores-dialog.component';
+import { MatDialog } from '@angular/material';
 import { ClienteService, ClienteFiltro } from './../../cliente/cliente.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -13,7 +15,8 @@ export class DashboardComponent implements OnInit {
   clientesDinheiroDevendo = 0;
 
   constructor(
-    private clienteService: ClienteService
+    private clienteService: ClienteService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -35,5 +38,14 @@ export class DashboardComponent implements OnInit {
 
   valorCardDinheiroPerdendo() {
     return `R$ ${this.clientesDinheiroDevendo}`;
+  }
+
+  openClientesDevedoresDialog() {
+    const dialogRef = this.dialog.open(ClientesDevedoresDialogComponent, {
+      width: '400px',
+      data: this.clienteDevedores
+    });
+
+    // dialogRef.afterClosed().subscribe(() => this.consultarPlanos());
   }
 }

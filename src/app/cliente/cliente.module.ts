@@ -15,6 +15,7 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { CdkTableModule } from '@angular/cdk/table';
 import { MatTableModule, MatInputModule } from '@angular/material';
+import { ClientesDevedoresDialogComponent } from './clientes-devedores-dialog/clientes-devedores-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,11 @@ import { MatTableModule, MatInputModule } from '@angular/material';
     ClienteFormularioComponent,
     ClienteDetalheComponent,
     ClientePesquisaComponent,
-    ClienteFormularioPesquisaComponent
+    ClienteFormularioPesquisaComponent,
+    ClientesDevedoresDialogComponent
+  ],
+  entryComponents: [
+    ClientesDevedoresDialogComponent
   ],
   imports: [
     BrowserAnimationsModule,
