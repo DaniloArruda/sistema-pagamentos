@@ -15,6 +15,7 @@ import { DashboardComponent } from './core/dashboard/dashboard.component';
 const routes: Routes = [
   { path: 'pagamento', component: PagamentoRegistroComponent, canActivate: [AuthGuard] },
   { path: 'historico', component: PagamentoHistoricoComponent, canActivate: [AuthGuard] },
+  { path: 'historico/:id', component: PagamentoHistoricoComponent, canActivate: [AuthGuard] },
   { path: 'cliente', component: ClientePesquisaComponent, canActivate: [AuthGuard] },
   { path: 'cliente/cadastro', component: ClienteCadastroComponent, canActivate: [AuthGuard] },
   { path: 'cliente/:id', component: ClienteCadastroComponent, canActivate: [AuthGuard] },

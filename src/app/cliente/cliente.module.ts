@@ -3,19 +3,19 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { CdkTableModule } from '@angular/cdk/table';
 
 import { ClienteCadastroComponent } from './cliente-cadastro/cliente-cadastro.component';
 import { ClienteFormularioComponent } from './cliente-formulario/cliente-formulario.component';
 import { ClienteDetalheComponent } from './cliente-detalhe/cliente-detalhe.component';
 import { ClientePesquisaComponent } from './cliente-pesquisa/cliente-pesquisa.component';
 import { ClienteFormularioPesquisaComponent } from './cliente-formulario-pesquisa/cliente-formulario-pesquisa.component';
+import { ClientesDevedoresDialogComponent } from './clientes-devedores-dialog/clientes-devedores-dialog.component';
 
 import { FieldsetModule } from 'primeng/fieldset';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
-import { CdkTableModule } from '@angular/cdk/table';
-import { MatTableModule, MatInputModule } from '@angular/material';
-import { ClientesDevedoresDialogComponent } from './clientes-devedores-dialog/clientes-devedores-dialog.component';
+import { MatTableModule, MatInputModule, MatIconModule, MatButtonModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,9 @@ import { ClientesDevedoresDialogComponent } from './clientes-devedores-dialog/cl
     ButtonModule,
     CdkTableModule,
     MatTableModule,
-    MatInputModule
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule
   ],
   exports: [
     ClienteFormularioPesquisaComponent,

@@ -1,11 +1,11 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import { map, startWith } from 'rxjs/operators';
 
 import { Cliente } from './../../core/model/cliente';
 import { ClienteService, ClienteFiltro } from './../../cliente/cliente.service';
-import { PagamentoService } from '../pagamento.service';
 import meses from 'src/app/core/util/meses';
 
 import { MessageService } from 'primeng/api';
@@ -21,7 +21,7 @@ export class PagamentoHistoricoComponent implements OnInit {
   displayedColumns: string[] = ['mes', 'valorPago', 'status'];
   clientes: Cliente[] = [];
   clienteId = '';
-  clienteResumoSelecionado: any;
+  clienteResumoSelecionado: any = {};
   clienteSelecionado: Cliente;
   mesInicio = '';
   mensalidades = [];
@@ -32,6 +32,7 @@ export class PagamentoHistoricoComponent implements OnInit {
   constructor(
     private clienteService: ClienteService,
     private messageService: MessageService,
+    private activatedRoute: ActivatedRoute,
   ) { }
 
   async ngOnInit() {
@@ -41,6 +42,12 @@ export class PagamentoHistoricoComponent implements OnInit {
         startWith(''),
         map(value => this._filter(value))
       );
+
+    const id = this.activatedRoute.snapshot.params.id;
+    if (id) {
+      this.clienteResumoSelecionado = this.clientes.find(cliente => cliente._id === id);
+      this.consultarHistorico();
+    }
   }
 
   private _filter(value: any): Cliente[] {

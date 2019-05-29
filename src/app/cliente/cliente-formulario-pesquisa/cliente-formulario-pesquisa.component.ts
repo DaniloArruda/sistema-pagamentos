@@ -12,7 +12,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class ClienteFormularioPesquisaComponent implements OnInit {
 
-  displayedColumns: string[] = ['nome', 'email', 'plano'];
+  displayedColumns: string[] = ['nome', 'email', 'plano', 'acoes'];
   clientes = [];
   clienteFiltro = new ClienteFiltro();
 
