@@ -3,24 +3,36 @@
     <div class="col-lg-4 col-md-6">
       <app-card descricao="Total clientes" [numero]="qtdClientes">
         <i class="material-icons" style="color: #007bff" icon>people</i>
-        <button class="btn btn-primary btn-sm"
-          routerLink="/cliente/cadastro" button >Cadastrar cliente</button>
+        <div button>
+          <button class="btn btn-primary btn-sm" routerLink="/cliente/cadastro">
+            Cadastrar cliente
+          </button>
+        </div>
       </app-card>
     </div>
     <div class="col-lg-4 col-md-6">
-      <app-card descricao="Clientes devendo" [numero]="valorCardClientesDevedores()">
-        <i class="material-icons" style="color: #f3bb45" icon >warning</i>
-        <button class="btn btn-primary btn-sm"
-          (click)="openClientesDevedoresDialog()" button >Listar clientes devedores</button>
+      <app-card
+        descricao="Clientes devendo"
+        [numero]="valorCardClientesDevedores()"
+      >
+        <i class="material-icons" style="color: #f3bb45" icon>warning</i>
+        <button
+          class="btn btn-primary btn-sm"
+          (click)="openClientesDevedoresDialog()"
+          button
+        >
+          Listar clientes devedores
+        </button>
       </app-card>
     </div>
     <div class="col-lg-4 col-md-6">
-        <app-card descricao="Perdendo..." [numero]="valorCardDinheiroPerdendo()">
-          <i class="material-icons" style="color: red" icon >money_off</i>
-          <button class="btn btn-primary btn-sm"
-            routerLink="/pagamento" button >Registrar pagamento</button>
-        </app-card>
-      </div>
+      <app-card descricao="Perdendo..." [numero]="valorCardDinheiroPerdendo()">
+        <i class="material-icons" style="color: red" icon>money_off</i>
+        <button class="btn btn-primary btn-sm" routerLink="/pagamento" button>
+          Registrar pagamento
+        </button>
+      </app-card>
+    </div>
   </div>
 
   <app-cliente-formulario-pesquisa></app-cliente-formulario-pesquisa>

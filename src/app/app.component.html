@@ -1,45 +1,72 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-    <mat-toolbar color="warn" class="example-toolbar mat-elevation-z6" *ngIf="exibindoNavbar()"
-      style="height: 50px">
-        <button mat-icon-button (click)="snav.toggle()">
-          <mat-icon>menu</mat-icon>
-        </button>
-        <h1 class="example-app-name" style="cursor:pointer;" routerLink="/dashboard">Responsive App</h1>
-        <button mat-icon-button class="icon-logout" (click)="logout()">
-          <mat-icon>power_settings_new</mat-icon>
-        </button>
-    </mat-toolbar>
+  <mat-toolbar
+    color="warn"
+    class="example-toolbar mat-elevation-z6"
+    *ngIf="exibindoNavbar()"
+    style="height: 50px"
+  >
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1
+      class="example-app-name"
+      style="cursor:pointer;"
+      routerLink="/dashboard"
+    >
+      Responsive App
+    </h1>
+    <button mat-icon-button class="icon-logout" (click)="logout()">
+      <mat-icon>power_settings_new</mat-icon>
+    </button>
+  </mat-toolbar>
 
-    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
-            fixedTopGap="56">
-            <mat-nav-list>
-                <a mat-list-item routerLink="/dashboard">
-                  <mat-icon>home</mat-icon> <span class="list-item-description">Dashboard</span>
-                </a>
-                <a mat-list-item routerLink="/cliente">
-                    <mat-icon>people</mat-icon> <span class="list-item-description">Clientes</span>
-                </a>
-                <a mat-list-item routerLink="/plano">
-                    <mat-icon>assignment_ind</mat-icon> <span class="list-item-description">Planos</span>
-                </a>
-                <a mat-list-item routerLink="/pagamento">
-                    <mat-icon>payment</mat-icon> <span class="list-item-description">Registrar pagamento</span>
-                </a>
-                <a mat-list-item routerLink="/historico">
-                    <mat-icon>history</mat-icon> <span class="list-item-description">Histórico pagamentos</span>
-                </a>
-                <mat-list-item (click)="logout()" class="list-item-logout">
-                    <mat-icon>exit_to_app</mat-icon> <span class="list-item-description">Sair</span>
-                </mat-list-item>
-            </mat-nav-list>
-        </mat-sidenav>
+  <mat-sidenav-container
+    class="example-sidenav-container"
+    [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+  >
+    <mat-sidenav
+      #snav
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56"
+    >
+      <mat-nav-list>
+        <a mat-list-item routerLink="/dashboard">
+          <mat-icon>home_outline</mat-icon>
+          <span class="list-item-description">Dashboard</span>
+        </a>
+        <a mat-list-item routerLink="/cliente">
+          <mat-icon>people_outlined</mat-icon>
+          <span class="list-item-description">Clientes</span>
+        </a>
+        <a mat-list-item routerLink="/plano">
+          <mat-icon>assignment_ind_outlined</mat-icon>
+          <span class="list-item-description">Planos</span>
+        </a>
+        <a mat-list-item routerLink="/pagamento">
+          <mat-icon>payment</mat-icon>
+          <span class="list-item-description">Registrar pagamento</span>
+        </a>
+        <a mat-list-item routerLink="/historico">
+          <mat-icon>history</mat-icon>
+          <span class="list-item-description">Histórico pagamentos</span>
+        </a>
+        <mat-list-item (click)="logout()" class="list-item-logout">
+          <mat-icon>exit_to_app</mat-icon>
+          <span class="list-item-description">Sair</span>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
 
-        <mat-sidenav-content>
-            <router-outlet></router-outlet>
-        </mat-sidenav-content>
-    </mat-sidenav-container>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>
 
 <p-toast></p-toast>
-<p-confirmDialog header="Confirmação" icon="pi pi-question-circle" width="425"></p-confirmDialog>
+<p-confirmDialog
+  header="Confirmação"
+  icon="pi pi-question-circle"
+  width="425"
+></p-confirmDialog>

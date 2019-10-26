@@ -9,3 +9,7 @@ table {
 .full-width {
   width: 100%;
 }
+
+button.btn.btn-primary.btn-block {
+  margin-top: 9px;
+}

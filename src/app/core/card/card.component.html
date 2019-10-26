@@ -13,9 +13,10 @@
     </div>
   </div>
   <div class="footer">
-    <hr>
-    <div class="action">
+    <hr />
+    <div class="actions">
       <ng-content select="[button]"></ng-content>
+      <app-more-actions [actions]="actions"></app-more-actions>
     </div>
   </div>
 </div>
