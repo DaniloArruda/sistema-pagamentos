@@ -1,38 +1,50 @@
-import { Injectable, ComponentRef } from "@angular/core";
+import {
+  Injectable,
+  TemplateRef,
+  ViewContainerRef,
+  EmbeddedViewRef
+} from "@angular/core";
 import {
   Overlay,
   OverlayConfig,
   ConnectionPositionPair,
-  OverlayRef
+  OverlayRef,
+  HorizontalConnectionPos,
+  VerticalConnectionPos
 } from "@angular/cdk/overlay";
-import { ComponentPortal } from "@angular/cdk/portal";
-import {
-  DropdownMenuComponent,
-  DropdownMenuItem
-} from "./dropdown-menu/dropdown-menu.component";
+import { TemplatePortal } from "@angular/cdk/portal";
 
 @Injectable({
   providedIn: "root"
 })
 export class DropdownMenuService {
   overlayRef: OverlayRef;
-  componentRef: ComponentRef<DropdownMenuComponent>;
+  embeddedViewRef: EmbeddedViewRef<any>;
   positions: ConnectionPositionPair[] = [
     {
-      originX: "end",
+      originX: "start",
       originY: "top",
-      overlayX: "end",
+      overlayX: "start",
       overlayY: "top"
     }
   ];
 
   constructor(private overlay: Overlay) {}
 
-  open(target: HTMLElement, items: DropdownMenuItem[]) {
+  open(
+    target: HTMLElement,
+    template: TemplateRef<any>,
+    container: ViewContainerRef,
+    config?: DropdownConfig
+  ) {
+    if (config) {
+      config.position ? (this.positions = [config.position]) : null;
+    }
+
     const overlayConfig = new OverlayConfig({
       hasBackdrop: true,
       backdropClass: "transparent",
-      scrollStrategy: this.overlay.scrollStrategies.noop(),
+      scrollStrategy: this.overlay.scrollStrategies.reposition(),
       positionStrategy: this.overlay
         .position()
         .flexibleConnectedTo(target)
@@ -43,14 +55,40 @@ export class DropdownMenuService {
     this.overlayRef = this.overlay.create(overlayConfig);
     this.overlayRef.backdropClick().subscribe(() => this.close());
 
-    const portal = new ComponentPortal(DropdownMenuComponent);
+    const templatePortal = new TemplatePortal(template, container);
 
-    this.componentRef = this.overlayRef.attach(portal);
-    this.componentRef.instance.items = items;
+    this.embeddedViewRef = this.overlayRef.attach(templatePortal);
   }
 
   close() {
     this.overlayRef.dispose();
-    this.componentRef.destroy();
+    this.embeddedViewRef.destroy();
   }
+}
+
+export class DropdownMenuItem {
+  constructor(
+    public caption: string,
+    public icon: string,
+    public action: () => any,
+    public block?: string
+  ) {}
+}
+
+export declare class DropdownConfig {
+  /** Dropdown position relative to the target */
+  position?: DropdownPosition;
+
+  constructor(config?: DropdownConfig);
+}
+
+export interface DropdownPosition {
+  /** X-axis attachment point for connected overlay origin. Can be 'start', 'end', or 'center'. */
+  originX: HorizontalConnectionPos;
+  /** Y-axis attachment point for connected overlay origin. Can be 'top', 'bottom', or 'center'. */
+  originY: VerticalConnectionPos;
+  /** X-axis attachment point for connected overlay. Can be 'start', 'end', or 'center'. */
+  overlayX: HorizontalConnectionPos;
+  /** Y-axis attachment point for connected overlay. Can be 'top', 'bottom', or 'center'. */
+  overlayY: VerticalConnectionPos;
 }

@@ -50,8 +50,3 @@
   display: flex;
   justify-content: space-between;
 }
-
-.more-actions {
-  padding: 10px;
-  cursor: pointer;
-}

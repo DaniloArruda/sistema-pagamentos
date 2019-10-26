@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { DropdownMenuService } from "src/app/core/dropdown-menu.service";
-import { DropdownMenuItem } from "../dropdown-menu/dropdown-menu.component";
+import { Component, Input } from "@angular/core";
+import { DropdownMenuItem } from "../dropdown-menu.service";
 
 @Component({
   selector: "app-card",

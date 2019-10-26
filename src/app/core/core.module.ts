@@ -24,7 +24,6 @@ import {
   MatCardModule,
   MatDialogModule
 } from "@angular/material";
-import { DropdownMenuComponent } from "./dropdown-menu/dropdown-menu.component";
 import { DropdownMenuService } from "./dropdown-menu.service";
 import { CardComponent } from "./card/card.component";
 import { MoreActionsComponent } from "./more-actions/more-actions.component";
@@ -35,7 +34,6 @@ registerLocaleData(localePt);
   declarations: [
     NavbarComponent,
     DashboardComponent,
-    DropdownMenuComponent,
     CardComponent,
     MoreActionsComponent
   ],
@@ -59,7 +57,6 @@ registerLocaleData(localePt);
     NavbarComponent,
     DashboardComponent,
     CardComponent,
-    DropdownMenuComponent,
     MoreActionsComponent,
     ToastModule,
     ConfirmDialogModule,
@@ -79,7 +76,6 @@ registerLocaleData(localePt);
     DropdownMenuService,
 
     { provide: LOCALE_ID, useValue: "pt-BR" }
-  ],
-  entryComponents: [DropdownMenuComponent]
+  ]
 })
 export class CoreModule {}

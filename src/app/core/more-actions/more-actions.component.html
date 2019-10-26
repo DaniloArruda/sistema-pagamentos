@@ -1,3 +1,22 @@
-<div #moreActions class="more-actions" (click)="openMoreActions(moreActions)">
+<div
+  #moreActions
+  class="more-actions"
+  (click)="openMoreActions(moreActions, templateActions)"
+>
   <mat-icon>more_vert</mat-icon>
 </div>
+
+<div #container></div>
+
+<ng-template #templateActions>
+  <div class="app-dropdown-menu">
+    <div
+      *ngFor="let action of actions"
+      (click)="action.action()"
+      class="app-dropdown-menu__item"
+    >
+      <mat-icon>{{ action.icon }}</mat-icon>
+      <span>{{ action.caption }}</span>
+    </div>
+  </div>
+</ng-template>
