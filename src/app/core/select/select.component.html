@@ -1,0 +1,20 @@
+<div #dropdown class="select" (click)="open(dropdownOptions)">
+  <span class="select__text" [(ngModel)]="value" ngDefaultControl>{{
+    value?.caption
+  }}</span>
+  <span class="select__icon">{{ arrow }}</span>
+</div>
+
+<div #container></div>
+
+<ng-template #dropdownOptions>
+  <div class="select__options">
+    <div
+      *ngFor="let option of options"
+      (click)="selectOption(option)"
+      class="select__option"
+    >
+      {{ option.caption }}
+    </div>
+  </div>
+</ng-template>

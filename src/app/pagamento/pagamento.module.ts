@@ -1,17 +1,18 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { RouterModule } from "@angular/router";
 
-import { PagamentoRegistroComponent } from './pagamento-registro/pagamento-registro.component';
-import { PagamentoHistoricoComponent } from './pagamento-historico/pagamento-historico.component';
+import { PagamentoRegistroComponent } from "./pagamento-registro/pagamento-registro.component";
+import { PagamentoHistoricoComponent } from "./pagamento-historico/pagamento-historico.component";
 
-import { TableModule } from 'primeng/table';
-import { TooltipModule } from 'primeng/tooltip';
-import { CurrencyMaskModule } from 'ng2-currency-mask';
-import { MatAutocompleteModule,
+import { TableModule } from "primeng/table";
+import { TooltipModule } from "primeng/tooltip";
+import { CurrencyMaskModule } from "ng2-currency-mask";
+import {
+  MatAutocompleteModule,
   MatBadgeModule,
   MatBottomSheetModule,
   MatButtonModule,
@@ -45,7 +46,9 @@ import { MatAutocompleteModule,
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatTreeModule, } from '@angular/material';
+  MatTreeModule
+} from "@angular/material";
+import { CoreModule } from "../core/core.module";
 
 @NgModule({
   declarations: [PagamentoRegistroComponent, PagamentoHistoricoComponent],
@@ -59,6 +62,7 @@ import { MatAutocompleteModule,
     TableModule,
     TooltipModule,
     CurrencyMaskModule,
+    CoreModule,
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,
@@ -93,10 +97,8 @@ import { MatAutocompleteModule,
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatTreeModule,
+    MatTreeModule
   ],
-  exports: [
-    PagamentoRegistroComponent
-  ]
+  exports: [PagamentoRegistroComponent]
 })
-export class PagamentoModule { }
+export class PagamentoModule {}

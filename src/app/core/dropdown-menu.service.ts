@@ -2,12 +2,12 @@ import {
   Injectable,
   TemplateRef,
   ViewContainerRef,
-  EmbeddedViewRef
+  EmbeddedViewRef,
+  ElementRef
 } from "@angular/core";
 import {
   Overlay,
   OverlayConfig,
-  ConnectionPositionPair,
   OverlayRef,
   HorizontalConnectionPos,
   VerticalConnectionPos
@@ -18,28 +18,34 @@ import { TemplatePortal } from "@angular/cdk/portal";
   providedIn: "root"
 })
 export class DropdownMenuService {
-  overlayRef: OverlayRef;
-  embeddedViewRef: EmbeddedViewRef<any>;
-  positions: ConnectionPositionPair[] = [
-    {
-      originX: "start",
-      originY: "top",
-      overlayX: "start",
-      overlayY: "top"
-    }
-  ];
+  private overlayRef: OverlayRef;
+  private embeddedViewRef: EmbeddedViewRef<any>;
+  private config: DropdownConfig = this.initialConfig();
 
   constructor(private overlay: Overlay) {}
 
+  private initialConfig() {
+    return new DropdownConfig({
+      position: {
+        originX: "start",
+        originY: "top",
+        overlayX: "start",
+        overlayY: "top"
+      }
+    });
+  }
+
   open(
-    target: HTMLElement,
+    reference: HTMLElement | ElementRef,
     template: TemplateRef<any>,
     container: ViewContainerRef,
     config?: DropdownConfig
   ) {
     if (config) {
-      config.position ? (this.positions = [config.position]) : null;
+      this.config = config;
     }
+
+    const referenceElement: HTMLElement = this.getReferenceElement(reference);
 
     const overlayConfig = new OverlayConfig({
       hasBackdrop: true,
@@ -47,8 +53,8 @@ export class DropdownMenuService {
       scrollStrategy: this.overlay.scrollStrategies.reposition(),
       positionStrategy: this.overlay
         .position()
-        .flexibleConnectedTo(target)
-        .withPositions(this.positions)
+        .flexibleConnectedTo(referenceElement)
+        .withPositions([this.config.position])
         .withPush(false)
     });
 
@@ -58,11 +64,30 @@ export class DropdownMenuService {
     const templatePortal = new TemplatePortal(template, container);
 
     this.embeddedViewRef = this.overlayRef.attach(templatePortal);
+
+    if (this.config.width) {
+      const containerElement: HTMLElement = this.embeddedViewRef.rootNodes[0];
+      containerElement.style.width = `${this.config.width}px`;
+      this.overlayRef.updateSize({ width: this.config.width });
+    }
   }
 
   close() {
     this.overlayRef.dispose();
     this.embeddedViewRef.destroy();
+
+    this.config.backdropAction ? this.config.backdropAction() : null;
+    this.config = this.initialConfig();
+  }
+
+  private getReferenceElement(
+    reference: HTMLElement | ElementRef
+  ): HTMLElement {
+    if (reference instanceof ElementRef) {
+      return reference.nativeElement;
+    }
+
+    return reference;
   }
 }
 
@@ -75,11 +100,17 @@ export class DropdownMenuItem {
   ) {}
 }
 
-export declare class DropdownConfig {
+export class DropdownConfig {
   /** Dropdown position relative to the target */
   position?: DropdownPosition;
+  width?: string | number;
+  backdropAction?: () => any;
 
-  constructor(config?: DropdownConfig);
+  constructor(config?: DropdownConfig) {
+    this.position = config.position ? config.position : null;
+    this.width = config.width ? config.width : null;
+    this.backdropAction = config.backdropAction ? config.backdropAction : null;
+  }
 }
 
 export interface DropdownPosition {

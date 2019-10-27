@@ -27,6 +27,7 @@ import {
 import { DropdownMenuService } from "./dropdown-menu.service";
 import { CardComponent } from "./card/card.component";
 import { MoreActionsComponent } from "./more-actions/more-actions.component";
+import { SelectComponent } from "./select/select.component";
 
 registerLocaleData(localePt);
 
@@ -35,7 +36,8 @@ registerLocaleData(localePt);
     NavbarComponent,
     DashboardComponent,
     CardComponent,
-    MoreActionsComponent
+    MoreActionsComponent,
+    SelectComponent
   ],
   imports: [
     CommonModule,
@@ -58,6 +60,7 @@ registerLocaleData(localePt);
     DashboardComponent,
     CardComponent,
     MoreActionsComponent,
+    SelectComponent,
     ToastModule,
     ConfirmDialogModule,
     MatIconModule,

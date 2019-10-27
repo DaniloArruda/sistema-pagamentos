@@ -5,26 +5,49 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label style="display: block;">Referente a</label>
-        <select  class="form-control" style="width:47%; display: inline-block;"
-          [(ngModel)]="mes" name="mes">
-          <option *ngFor="let mes of mesesDoAno" [value]="mes.numero">{{ mes.nome }}</option>
-        </select>
-        /
-        <input type="number" class="form-control" size="6" style="width: 47%;display: inline-block;"
-          [(ngModel)]="ano" name="ano" />
+        <div class="pagamento__mes-ano">
+          <select class="form-control" [(ngModel)]="mes" name="mes">
+            <option *ngFor="let mes of mesesDoAno" [value]="mes.numero">{{
+              mes.nome
+            }}</option>
+          </select>
+          <span>/</span>
+          <input
+            type="number"
+            class="form-control"
+            size="6"
+            style="width: 47%;display: inline-block;"
+            [(ngModel)]="ano"
+            name="ano"
+          />
+        </div>
       </div>
 
       <div class="form-group col-md-6">
-          <label>Valor</label>
-          <input type="text" class="form-control"
-            [(ngModel)]="valor" name="valor"
-            currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative: false }" />
-        </div>
+        <label>Valor</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="valor"
+          name="valor"
+          currencyMask
+          [options]="{
+            prefix: 'R$ ',
+            thousands: '.',
+            decimal: ',',
+            allowNegative: false
+          }"
+        />
+      </div>
     </div>
 
     <div class="form-group">
       <label>Cliente</label>
-      <select class="form-control" [(ngModel)]="clienteSelecionado" name="cliente">
+      <select
+        class="form-control"
+        [(ngModel)]="clienteSelecionado"
+        name="cliente"
+      >
         <option value="">Selecione</option>
         <option *ngFor="let cliente of clientes" [value]="cliente._id">
           {{ cliente.nome }}
@@ -32,7 +55,13 @@
       </select>
     </div>
 
-    <button type="button" class="btn btn-primary btn-block"
-      (click)="registrarPagamento(form)">Salvar</button>
+    <button
+      type="button"
+      class="btn btn-primary btn-block"
+      (click)="registrarPagamento(form)"
+    >
+      Salvar
+    </button>
   </form>
+  <app-select [options]="clientesComoOptions"></app-select>
 </div>
