@@ -6,7 +6,8 @@ import {
   TemplateRef,
   ElementRef,
   ViewContainerRef,
-  OnInit
+  OnInit,
+  Renderer2
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, NgModel } from "@angular/forms";
 import { DropdownConfig, DropdownMenuService } from "../dropdown-menu.service";
@@ -30,7 +31,10 @@ export class SelectComponent implements OnInit {
 
   private opened = false;
 
-  constructor(private dropdownMenuService: DropdownMenuService) {}
+  constructor(
+    private dropdownMenuService: DropdownMenuService,
+    private renderer: Renderer2
+  ) {}
 
   ngOnInit() {}
 
@@ -46,11 +50,17 @@ export class SelectComponent implements OnInit {
   open(template: TemplateRef<any>) {
     this.opened = true;
 
-    this.dropdownMenuService.open(
+    const dropdownElement = this.dropdownMenuService.open(
       this.dropdown,
       template,
       this.container,
       this.getDropdownConfig()
+    );
+
+    this.renderer.setStyle(
+      dropdownElement,
+      "width",
+      `${this.dropdown.nativeElement.clientWidth}px`
     );
   }
 
@@ -67,7 +77,6 @@ export class SelectComponent implements OnInit {
         overlayX: "start",
         overlayY: "top"
       },
-      width: this.dropdown.nativeElement.clientWidth,
       backdropAction: () => (this.opened = false)
     });
   }

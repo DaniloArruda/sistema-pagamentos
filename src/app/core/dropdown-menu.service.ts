@@ -64,12 +64,9 @@ export class DropdownMenuService {
     const templatePortal = new TemplatePortal(template, container);
 
     this.embeddedViewRef = this.overlayRef.attach(templatePortal);
+    const containerElement: HTMLElement = this.embeddedViewRef.rootNodes[0];
 
-    if (this.config.width) {
-      const containerElement: HTMLElement = this.embeddedViewRef.rootNodes[0];
-      containerElement.style.width = `${this.config.width}px`;
-      this.overlayRef.updateSize({ width: this.config.width });
-    }
+    return containerElement;
   }
 
   close() {
