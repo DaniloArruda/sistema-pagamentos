@@ -1,52 +1,64 @@
 <form #form="ngForm" (ngSubmit)="consultarClientes()">
-    <div class="form-row">
-      <div class="form-group col-md-4">
-        <mat-form-field class="full-width">
-          <input matInput placeholder="Nome" type="text" name="nome"  [readonly]="somenteLeitura"
-            [(ngModel)]="clienteFiltro.nome" />
-        </mat-form-field>
-      </div>
-
-      <div class="form-group col-md-4">
-        <mat-form-field class="full-width">
-          <input matInput placeholder="E-mail" type="text" name="email"  [readonly]="somenteLeitura"
-            [(ngModel)]="clienteFiltro.email" />
-        </mat-form-field>
-      </div>
-
-      <div class="col-md-4">
-        <button type="submit" class="btn btn-primary btn-block">Pesquisar</button>
-      </div>
-    </div>
-  </form>
-
   <div class="form-row">
-    <table mat-table [dataSource]="clientes" class="mat-elevation-z2">
-      <ng-container matColumnDef="nome">
-        <th mat-header-cell *matHeaderCellDef> Nome </th>
-        <td mat-cell *matCellDef="let cliente"> {{ cliente.nome }} </td>
-      </ng-container>
+    <div class="form-group col-md-4">
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          placeholder="Nome"
+          type="text"
+          name="nome"
+          [readonly]="somenteLeitura"
+          [(ngModel)]="clienteFiltro.nome"
+        />
+      </mat-form-field>
+    </div>
 
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef> Email </th>
-        <td mat-cell *matCellDef="let cliente"> {{ cliente.email }} </td>
-      </ng-container>
+    <div class="form-group col-md-4">
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          placeholder="E-mail"
+          type="text"
+          name="email"
+          [readonly]="somenteLeitura"
+          [(ngModel)]="clienteFiltro.email"
+        />
+      </mat-form-field>
+    </div>
 
-      <ng-container matColumnDef="plano">
-        <th mat-header-cell *matHeaderCellDef> Plano </th>
-        <td mat-cell *matCellDef="let cliente"> {{ cliente.planoObj?.nome }} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="acoes">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let cliente" style="text-align: right">
-          <button mat-icon-button [routerLink]="['/historico', cliente._id]" >
-            <mat-icon>history</mat-icon>
-          </button>
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
+    <div class="col-md-4">
+      <button type="submit" class="btn btn-primary btn-block">Pesquisar</button>
+    </div>
   </div>
+</form>
+
+<div class="form-row">
+  <table mat-table [dataSource]="clientes" class="mat-elevation-z2">
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef>Nome</th>
+      <td mat-cell *matCellDef="let cliente">{{ cliente.nome }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let cliente">{{ cliente.email }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="plano">
+      <th mat-header-cell *matHeaderCellDef>Plano</th>
+      <td mat-cell *matCellDef="let cliente">{{ cliente.plano?.nome }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="acoes">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let cliente" style="text-align: right">
+        <button mat-icon-button [routerLink]="['/historico', cliente._id]">
+          <mat-icon>history</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

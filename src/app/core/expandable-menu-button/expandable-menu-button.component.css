@@ -1,0 +1,18 @@
+.expandable-menu-button {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.expandable-menu-button span {
+  padding-left: 10px;
+}
+
+.expandable-menu-button:hover {
+  color: #005ab9;
+}
+
+.expandable-menu-button__content {
+  display: flex;
+}

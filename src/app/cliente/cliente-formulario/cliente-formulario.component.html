@@ -1,20 +1,32 @@
 <div class="form-row">
   <div class="form-group col-md-4">
     <label>Nome</label>
-    <input type="text" class="form-control" [readonly]="somenteLeitura"
-      [(ngModel)]="cliente.nome" />
+    <input
+      type="text"
+      class="form-control"
+      [readonly]="somenteLeitura"
+      [(ngModel)]="cliente.nome"
+    />
   </div>
 
   <div class="form-group col-md-4">
     <label>E-mail</label>
-    <input type="text" class="form-control" [readonly]="somenteLeitura"
-      [(ngModel)]="cliente.email" />
+    <input
+      type="text"
+      class="form-control"
+      [readonly]="somenteLeitura"
+      [(ngModel)]="cliente.email"
+    />
   </div>
 
   <div class="form-group col-md-4">
     <label>Telefone</label>
-    <input type="text" class="form-control" [readonly]="somenteLeitura"
-      [(ngModel)]="cliente.telefone" />
+    <input
+      type="text"
+      class="form-control"
+      [readonly]="somenteLeitura"
+      [(ngModel)]="cliente.telefone"
+    />
   </div>
 </div>
 
@@ -23,34 +35,54 @@
     <div class="form-row">
       <div class="form-group col-sm-10">
         <label>Logradouro</label>
-        <input type="text" class="form-control" [readonly]="somenteLeitura"
-          [(ngModel)]="cliente.endereco.logradouro" />
+        <input
+          type="text"
+          class="form-control"
+          [readonly]="somenteLeitura"
+          [(ngModel)]="cliente.endereco.logradouro"
+        />
       </div>
 
       <div class="form-group col-sm-2">
         <label>Número</label>
-        <input type="text" class="form-control" [readonly]="somenteLeitura"
-          [(ngModel)]="cliente.endereco.numero" />
+        <input
+          type="text"
+          class="form-control"
+          [readonly]="somenteLeitura"
+          [(ngModel)]="cliente.endereco.numero"
+        />
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-4">
         <label>Bairro</label>
-        <input type="text" class="form-control" [readonly]="somenteLeitura"
-          [(ngModel)]="cliente.endereco.bairro"/>
+        <input
+          type="text"
+          class="form-control"
+          [readonly]="somenteLeitura"
+          [(ngModel)]="cliente.endereco.bairro"
+        />
       </div>
 
       <div class="form-group col-md-4">
         <label>Cidade</label>
-        <input type="text" class="form-control" [readonly]="somenteLeitura"
-          [(ngModel)]="cliente.endereco.cidade" />
+        <input
+          type="text"
+          class="form-control"
+          [readonly]="somenteLeitura"
+          [(ngModel)]="cliente.endereco.cidade"
+        />
       </div>
 
       <div class="form-group col-md-4">
         <label>Estado</label>
-        <input type="text" class="form-control" [readonly]="somenteLeitura"
-          [(ngModel)]="cliente.endereco.estado" />
+        <input
+          type="text"
+          class="form-control"
+          [readonly]="somenteLeitura"
+          [(ngModel)]="cliente.endereco.estado"
+        />
       </div>
     </div>
   </p-fieldset>
@@ -59,10 +91,11 @@
 <div class="form-row">
   <div class="form-group col-12">
     <label>Plano</label>
-    <select class="form-control" [(ngModel)]="cliente.plano" >
+    <select class="form-control" [(ngModel)]="cliente.plano">
       <option value="">Selecione</option>
-      <option *ngFor="let plano of planos" [value]="plano._id">
-        {{ plano.nome }} | {{ plano.qtdDados }} MB | R$ {{ plano.valor | number:'1.2-2' }}
+      <option *ngFor="let plano of planos" [ngValue]="plano">
+        {{ plano.nome }} | {{ plano.qtdDados }} MB | R$
+        {{ plano.valor | number: "1.2-2" }}
       </option>
     </select>
   </div>

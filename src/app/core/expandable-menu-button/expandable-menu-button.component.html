@@ -1,0 +1,14 @@
+<div class="expandable-menu-button">
+  <div class="expandable-menu-button__content" (click)="expand($event)">
+    <mat-icon>account_balance_wallet</mat-icon>
+    <span>Pagar</span>
+  </div>
+
+  <form
+    class="expandable-menu-button__content has-expandable-state"
+    *ngIf="isExpanded"
+  >
+    <input type="text" />
+    <button>Add</button>
+  </form>
+</div>

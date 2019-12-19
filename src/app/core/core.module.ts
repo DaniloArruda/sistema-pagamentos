@@ -28,6 +28,8 @@ import { DropdownMenuService } from "./dropdown-menu.service";
 import { CardComponent } from "./card/card.component";
 import { MoreActionsComponent } from "./more-actions/more-actions.component";
 import { SelectComponent } from "./select/select.component";
+import { ExpandableMenuButtonComponent } from "./expandable-menu-button/expandable-menu-button.component";
+import { TemplateDirective } from './template.directive';
 
 registerLocaleData(localePt);
 
@@ -37,7 +39,9 @@ registerLocaleData(localePt);
     DashboardComponent,
     CardComponent,
     MoreActionsComponent,
-    SelectComponent
+    SelectComponent,
+    ExpandableMenuButtonComponent,
+    TemplateDirective
   ],
   imports: [
     CommonModule,
@@ -68,7 +72,8 @@ registerLocaleData(localePt);
     MatSidenavModule,
     MatListModule,
     MatButtonModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    ExpandableMenuButtonComponent
   ],
   providers: [
     PagamentoService,

@@ -16,7 +16,26 @@
     <hr />
     <div class="actions">
       <ng-content select="[button]"></ng-content>
-      <app-more-actions [actions]="actions"></app-more-actions>
+      <app-more-actions>
+        <div class="app-dropdown-menu" *appTemplate>
+          <div (click)="pay()" class="app-dropdown-menu__item">
+            <mat-icon>account_balance_wallet</mat-icon>
+            <span>Pagar</span>
+          </div>
+
+          <div (click)="save()" class="app-dropdown-menu__item">
+            <mat-icon>save</mat-icon>
+            <span>Salvar</span>
+          </div>
+
+          <div (click)="delete()" class="app-dropdown-menu__item">
+            <mat-icon>delete</mat-icon>
+            <span>Deletar</span>
+          </div>
+
+          <app-expandable-menu-button></app-expandable-menu-button>
+        </div>
+      </app-more-actions>
     </div>
   </div>
 </div>

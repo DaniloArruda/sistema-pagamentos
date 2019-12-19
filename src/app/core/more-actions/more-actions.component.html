@@ -9,14 +9,7 @@
 <div #container></div>
 
 <ng-template #templateActions>
-  <div class="app-dropdown-menu">
-    <div
-      *ngFor="let action of actions"
-      (click)="action.action()"
-      class="app-dropdown-menu__item"
-    >
-      <mat-icon>{{ action.icon }}</mat-icon>
-      <span>{{ action.caption }}</span>
-    </div>
+  <div (click)="close()">
+    <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
   </div>
 </ng-template>

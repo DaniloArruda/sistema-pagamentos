@@ -18,5 +18,11 @@ export class CardComponent {
     new DropdownMenuItem("Deletar", "delete", () => console.log("deletou"))
   ];
 
+  save() {}
+
+  delete() {}
+
+  pay() {}
+
   constructor() {}
 }

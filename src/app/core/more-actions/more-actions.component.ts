@@ -4,7 +4,8 @@ import {
   Input,
   TemplateRef,
   ViewContainerRef,
-  ViewChild
+  ViewChild,
+  ContentChild
 } from "@angular/core";
 import {
   DropdownMenuService,
@@ -20,7 +21,8 @@ import {
 export class MoreActionsComponent implements OnInit {
   @ViewChild("container", { read: ViewContainerRef })
   container: ViewContainerRef;
-  @Input() actions: DropdownMenuItem[];
+  // @Input() contentTemplate: TemplateRef<any>;
+  @ContentChild(TemplateRef) contentTemplate: TemplateRef<any>;
 
   constructor(private dropdownMenuService: DropdownMenuService) {}
 
@@ -41,5 +43,9 @@ export class MoreActionsComponent implements OnInit {
       this.container,
       dropdownConfig
     );
+  }
+
+  close() {
+    this.dropdownMenuService.close();
   }
 }

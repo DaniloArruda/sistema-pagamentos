@@ -1,6 +1,6 @@
-import { Pagamento } from './pagamento';
-import { Plano } from './plano';
-import { Endereco } from './endereco';
+import { Pagamento } from "./pagamento";
+import { Plano } from "./plano";
+import { Endereco } from "./endereco";
 
 export class Cliente {
   _id: string;
@@ -9,7 +9,7 @@ export class Cliente {
   telefone: string;
   createdAt: Date;
   endereco = new Endereco();
-  plano = '';
+  plano: Plano;
   planoObj?: Plano;
   pagamentos?: Pagamento[];
 }

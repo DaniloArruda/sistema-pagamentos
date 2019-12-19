@@ -1,50 +1,46 @@
-import { Cliente } from 'src/app/core/model/cliente';
-import { PlanoService } from '../plano/plano.service';
+import { Cliente } from "src/app/core/model/cliente";
+import { PlanoService } from "../plano/plano.service";
 
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class ClienteService {
-
   // clienteUrl = 'https://da-pagamento-api.herokuapp.com/cliente';
-  clienteUrl = 'http://localhost:5000/cliente';
+  clienteUrl = "http://localhost:5000/cliente";
 
-  constructor(
-    private http: HttpClient,
-    private planoService: PlanoService
-  ) { }
+  constructor(private http: HttpClient, private planoService: PlanoService) {}
 
   private montarHttpParams(filtro: ClienteFiltro) {
     let params = new HttpParams();
 
     if (filtro.nome) {
-      params = params.set('nome', filtro.nome);
+      params = params.set("nome", filtro.nome);
     }
 
     if (filtro.email) {
-      params = params.set('email', filtro.email);
+      params = params.set("email", filtro.email);
     }
 
     if (filtro.telefone) {
-      params = params.set('telefone', filtro.telefone);
+      params = params.set("telefone", filtro.telefone);
     }
 
     return params;
   }
 
   private obterPagamentos(cliente: any) {
-    this.planoService.buscarPorId(cliente.plano)
-      .then(plano => {
-        cliente.planoObj = plano;
-      });
+    this.planoService.buscarPorId(cliente.plano).then(plano => {
+      cliente.planoObj = plano;
+    });
   }
 
   pesquisarResumido(filtro: ClienteFiltro) {
     const params = this.montarHttpParams(filtro);
-    return this.http.get(`${this.clienteUrl}?resumo`, { params })
+    return this.http
+      .get(`${this.clienteUrl}?resumo`, { params })
       .toPromise()
       .then(response => response as any);
   }
@@ -52,24 +48,26 @@ export class ClienteService {
   pesquisar(filtro: ClienteFiltro) {
     const params = this.montarHttpParams(filtro);
 
-    return this.http.get(this.clienteUrl, { params })
+    return this.http
+      .get(this.clienteUrl, { params })
       .toPromise()
       .then(response => {
         const clientes = response as any;
 
-        for (const cliente of clientes) {
-          this.planoService.buscarPorId(cliente.plano)
-            .then(plano => {
-              cliente.planoObj = plano;
-            });
-        }
+        // for (const cliente of clientes) {
+        //   this.planoService.buscarPorId(cliente.plano)
+        //     .then(plano => {
+        //       cliente.planoObj = plano;
+        //     });
+        // }
 
         return clientes;
       });
   }
 
   async buscarPorId(id: string) {
-    return this.http.get(`${this.clienteUrl}/${id}?pagamento`)
+    return this.http
+      .get(`${this.clienteUrl}/${id}?pagamento`)
       .toPromise()
       .then(response => {
         const cliente = response as Cliente;
@@ -85,42 +83,48 @@ export class ClienteService {
   }
 
   salvar(cliente: Cliente) {
-    return this.http.post(`${this.clienteUrl}`, cliente)
+    return this.http
+      .post(`${this.clienteUrl}`, cliente)
       .toPromise()
       .then(clienteSalvo => clienteSalvo as Cliente);
   }
 
   atualizar(cliente: Cliente) {
-    return this.http.put(`${this.clienteUrl}/${cliente._id}`, cliente)
+    return this.http
+      .put(`${this.clienteUrl}/${cliente._id}`, cliente)
       .toPromise()
       .then(clienteSalvo => clienteSalvo as Cliente);
   }
 
   excluir(id: string) {
-    return this.http.delete(`${this.clienteUrl}/${id}`)
+    return this.http
+      .delete(`${this.clienteUrl}/${id}`)
       .toPromise()
       .then(() => null);
   }
 
   contar() {
-    return this.http.get(`${this.clienteUrl}/quantidade`)
+    return this.http
+      .get(`${this.clienteUrl}/quantidade`)
       .toPromise()
-      .then(response => response['count']);
+      .then(response => response["count"]);
   }
 
   devedores() {
-    return this.http.get(`${this.clienteUrl}/devedores`)
+    return this.http
+      .get(`${this.clienteUrl}/devedores`)
       .toPromise()
-      .then(response => response as any)
+      .then(response => response as any);
   }
 
   dinheiroDevendo() {
-    return this.http.get(`${this.clienteUrl}/dinheiroDevendo`)
+    return this.http
+      .get(`${this.clienteUrl}/dinheiroDevendo`)
       .toPromise()
       .then(response => {
         const data = response as any;
         return data.valor;
-      })
+      });
   }
 }
 
